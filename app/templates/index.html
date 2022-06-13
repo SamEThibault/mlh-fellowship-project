@@ -1,23 +1,25 @@
 {% extends "base.html" %}
 
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
-    <script src="{{ url_for('static', filename='scripts/index.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+<script src="{{ url_for('static', filename='scripts/index.js') }}" defer></script>
 {% endblock %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
 
-    <div class="background">
-        <div class="mask">
-            <div class="home-container">
-                <h1>&nbsp<span class="txt-type blink" data-wait="1500" data-words='["Hey There!", "My name is Sam", "Welcome to my portfolio."]'></span></h1>
-                <span><a style="position:relative;right:-20px;" href="{{ url_for('about') }}">Continue  <img src="{{ url_for('static', filename='img/arrow-right.svg') }}" alt=""></a></span>
-                <h1 class="hidden">Welcome to&nbspmy portfolio!</h1>
-            </div>
+<div class="background">
+    <div class="mask">
+        <div class="home-container">
+            <h1>&nbsp<span class="txt-type blink" data-wait="1500"
+                    data-words='["Hey There!", "My name is Sam", "Welcome to my portfolio."]'></span></h1>
+            <span><a style="position:relative;right:-20px;" href="{{ url_for('about') }}">Continue <img
+                        src="{{ url_for('static', filename='img/arrow-right.svg') }}" alt=""></a></span>
+            <h1 class="hidden">Welcome to&nbspmy portfolio!</h1>
         </div>
     </div>
+</div>
 
 {% endblock %}
 
