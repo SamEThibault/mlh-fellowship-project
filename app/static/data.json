@@ -6,7 +6,7 @@
         "education": "Rising junior studying Computer Engineering at Queen's University in ON, Canada.",
         "work_experience": [
             {
-                "name": "MLH Production Engineering Fellowship",
+                "name": "MLH Production Engineering Fellow",
                 "val": "Develop and deploy this web application using GitHub best practices such as PRs, code reviews, and issues."
             },
             {

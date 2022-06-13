@@ -2,6 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/experience.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="{{ url_for('static', filename='scripts/experience.js') }}" defer></script>
 {% endblock %}
 
@@ -49,6 +50,7 @@
 
                 <div id="projects">
                     <div class="projects">
+
                         <div class="project">
                             <h5>{{ data.sam.projects[0].name }}</h5>
                             <a href="{{ data.sam.projects[0].link }}">
@@ -76,8 +78,20 @@
                                 </div>
                             </a>
                         </div>
+
                     </div>
                 </div>
+
+              <div class="see-more">
+                <h3>Want to see more?</h3>
+
+                <a href={{ data.sam.social[0].val }}>
+                    <i class="fa fa-3x fa-linkedin-square"></i>
+                </a>
+                <a href={{ data.sam.social[1].val }}>
+                    <i class="fa fa-3x fa-github"></i>
+                </a>
+              </div>
             </div>
         </div>
 
