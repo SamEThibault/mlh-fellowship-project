@@ -4,7 +4,20 @@
         "about": "Hi, my name is Sam, I'm from Ottawa, and am completing my studies in Kingston, ON. I enjoy working on web applications and exploring emerging technologies such as React, Flask, and Spring Boot!",
         "about_short": "Hi, my name is Sam, I'm from Ottawa, and am completing my studies in Kingston, ON.",
         "education": "Rising junior studying Computer Engineering at Queen's University in ON, Canada.",
-        "work_experience": "Computer Science Tutor, Queen's Racing Electrical Team Member",
+        "work_experience": [
+            {
+                "name": "MLH Production Engineering Fellow",
+                "val": "Develop and deploy this web application using GitHub best practices such as PRs, code reviews, and issues."
+            },
+            {
+                "name": "Computer Science Tutor",
+                "val": "Help High school-level students learn the fundamental concepts of the Java programming language."
+            },
+            {
+                "name": "Queen's Racing Electrical Team Member",
+                "val": "Analyze PCB designs of electrical components and analyse MatLab SimuLink models and documentation."
+            }
+        ],
         "hobbies": "working on cars, buildings computers, and playing video games.",
         "map_data": "Canada, USA",
         "social": [
@@ -39,8 +52,7 @@
             }
         ]
     },
-
-  "locations": [
+    "locations": [
         {
             "name": "Orlando, Florida, USA",
             "latitude": 28.538336,
