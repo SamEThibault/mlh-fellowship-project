@@ -1,42 +1,9 @@
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-button,
-footer {
-    font-family: "koara-light", serif;
-}
-
-html *
-{
-   font-family: "koara", serif;
-}
-
-b {
-    font-family: "koara", serif;
-}
-
-@font-face {
-    font-family: 'koara';
-    src: url("../fonts/Koara-font-family/wildRegular.otf");
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
     background-color: white;
     background-size: cover;
     width: auto;
     overflow-x: hidden;
-    font-family: "koara", serif;
     margin: 0px;
-}
-
-.navbar {
-    font-family: "koara", serif;
 }
 
 .nav-logo img {
@@ -58,7 +25,7 @@ body {
 }
 
 .section {
-    background-image: url("../img/map_background.jpg");
+    background-image: url("https://i0.wp.com/i.pinimg.com/originals/fc/06/9e/fc069eefbae9355b6bd29da6d16c075e.jpg?resize=160,120");
 }
 
 .header-text {
@@ -72,5 +39,5 @@ body {
 }
 
 .navbar{
-    background-color: #0C1917 !important;
+    background-color: #171010 !important;
 }
