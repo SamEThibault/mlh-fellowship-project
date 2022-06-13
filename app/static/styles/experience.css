@@ -99,7 +99,7 @@
     width: 150px;
 }
 
-#luke, #mustafa, #sam {
+#sam {
     display: flex;
     flex-direction: column;
     gap: 20px;
