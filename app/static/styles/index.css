@@ -2,14 +2,6 @@ body, html {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: 'koara', serif;
-}
-
-@font-face {
-    font-family: 'koara-light';
-    src: url("../fonts/Koara-font-family/wildLight.otf");
-    font-weight: 200;
-    font-style: normal;
 }
 
 #content {
@@ -20,7 +12,7 @@ body, html {
 
 .background {
     flex: 1;
-    background: url("../img/background.jpg") no-repeat center center / cover;
+    background: url("https://www.pixelstalk.net/wp-content/uploads/images6/Retro-Aesthetic-Backgrounds-Desktop.png") no-repeat center center / cover;
     height: 100%;
 
     /* Center and scale the image nicely */

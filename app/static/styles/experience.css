@@ -1,13 +1,8 @@
-.content {
-    height: fit-content;
-}
+
 
 .background {
-    background: url("../img/background.jpg") no-repeat center center / cover;
-    height: 100%;
-    background-position: center;
-    background-repeat: repeat-y;
-    background-size: cover;
+    background-color: #111223;
+    height: 100vh;
 }
 
 .mask {

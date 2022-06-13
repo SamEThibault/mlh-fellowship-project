@@ -18,21 +18,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-    <link rel='icon' href='./static/img/jungle-icon.png' type='image/x-icon'/>
+    <link rel='icon' href='' type=''/>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark">
-    <a href="https://fellowship.mlh.io/">
-        <div class="nav-logo">
-            <img src="../static/img/jungle-icon.png"/>
-        </div>
-    </a>
 
-    <!-- Nav bar -->
-    <a class="navbar-brand" href="{{ url_for('index') }}">Team Jungle</a>
+  <!-- navigation bar -->
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <a class="navbar-brand" style="margin-left:10px;" href="{{ url_for('index') }}">Samuel Emard-Thibault</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -52,8 +47,9 @@
         </ul>
     </div>
 </nav>
+
 <div class="section">
-    <h1 class="header-text">Where we have been!</h1>
+    <h1 class="header-text">Where I've been!</h1>
     <div class="folium">
         <iframe src="/map" width="900" height="700"></iframe>
     </div>
@@ -62,7 +58,7 @@
 
 <div id="content">{% block content %}{% endblock %}</div>
 <div id="footer">
-    <footer class=" text-center text-white" style="background-color:#0C1917;">
+    <footer class=" text-center text-white" style="background-color:#171010;">
 
         <!-- Copyright -->
         <div class="text-center p-3">
