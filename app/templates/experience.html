@@ -1,70 +1,87 @@
 {% extends "base.html" %}
 
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/experience.css') }}">
-    <script src="{{ url_for('static', filename='scripts/experience.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/experience.css') }}">
+<script src="{{ url_for('static', filename='scripts/experience.js') }}" defer></script>
 {% endblock %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <div class="background">
-        <div class="mask">
+<div class="background">
+    <div class="mask">
 
-            <h1>Experience</h1>
+        <h1 style="font-size:4vw;">Experience</h1>
 
-            <div class="main">
-                <div class="left">
-                    <ul>
-                        <li id="sam-button"><img src="{{ url_for('static', filename='img/arrow-right.svg') }}" alt="">Sam</li>
-                    </ul>
-                </div>
+        <div class="main">
+            <div class="left">
+                <ul>
+                    <li id="prof-button"><img src="{{ url_for('static', filename='img/arrow-right.svg') }}"
+                            alt="">Professional</li>
+                    <li id="project-button"><img src="{{ url_for('static', filename='img/arrow-right.svg') }}"
+                            alt="">Projects</li>
+                </ul>
+            </div>
 
-                <div class="center">
+            <div class="center">
 
-                    <div id="sam">
-                        <div class="profile">
-                            <img src="{{ url_for('static', filename='img/sam/samSelfie.jpg') }}" alt="" class="headshot">
-                            <div class="brief">
-                                <h3>Sam</h3>
-                                <p>{{data.sam.work_experience}}</p>
-                            </div>
-                        </div>
-                        
-                        <div class="projects">
-                            <div class="project">
-                                <h5>{{ data.sam.projects[0].name }}</h5>
-                                <a href="{{ data.sam.projects[0].link }}">
-                                    <div class="wrap">
-                                        <img src="{{ url_for('static', filename='img/sam/TimeSavior.png')}}" alt="">
-                                        <div class="desc">{{ data.sam.projects[0].desc }}</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="project">
-                                <h5>{{ data.sam.projects[1].name }}</h5>
-                                <a href="{{ data.sam.projects[2].link }}">
-                                    <div class="wrap">
-                                        <img src="{{ url_for('static', filename='img/sam/CookHack.png')}}" alt="">
-                                        <div class="desc">{{ data.sam.projects[1].desc }}</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="project">
-                                <h5>{{ data.sam.projects[2].name }}</h5>
-                                <a href="{{ data.sam.projects[2].link }}">
-                                    <div class="wrap">
-                                        <img src="{{ url_for('static', filename='img/sam/car.png')}}" alt="">
-                                        <div class="desc">{{ data.sam.projects[2].desc }}</div>
-                                    </div>
-                                </a>
-                            </div>
+                <div id="professional">
+                    <div class="profile">
+
+                        <div class="brief">
+                            <h3>Professional</h3>
+                            <h4>{{data.sam.work_experience[0].name}}</h4>
+                            <p>{{data.sam.work_experience[0].val}}</p>
+
+                            <br />
+                            <h4>{{data.sam.work_experience[1].name}}</h4>
+                            <p>{{data.sam.work_experience[1].val}}</p>
+
+                            <br />
+                            <h4>{{data.sam.work_experience[2].name}}</h4>
+                            <p>{{data.sam.work_experience[2].val}}</p>
+
                         </div>
                     </div>
                 </div>
 
+                <h3>Projects</h3>
+
+                <div id="projects">
+                    <div class="projects">
+                        <div class="project">
+                            <h5>{{ data.sam.projects[0].name }}</h5>
+                            <a href="{{ data.sam.projects[0].link }}">
+                                <div class="wrap">
+                                    <img src="{{ url_for('static', filename='img/sam/TimeSavior.png')}}" alt="">
+                                    <div class="desc">{{ data.sam.projects[0].desc }}</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="project">
+                            <h5>{{ data.sam.projects[1].name }}</h5>
+                            <a href="{{ data.sam.projects[2].link }}">
+                                <div class="wrap">
+                                    <img src="{{ url_for('static', filename='img/sam/CookHack.png')}}" alt="">
+                                    <div class="desc">{{ data.sam.projects[1].desc }}</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="project">
+                            <h5>{{ data.sam.projects[2].name }}</h5>
+                            <a href="{{ data.sam.projects[2].link }}">
+                                <div class="wrap">
+                                    <img src="{{ url_for('static', filename='img/sam/car.png')}}" alt="">
+                                    <div class="desc">{{ data.sam.projects[2].desc }}</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
+</div>
 
 {% endblock %}

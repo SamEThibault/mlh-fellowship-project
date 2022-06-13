@@ -1,7 +1,7 @@
 
 
 .background {
-    background-color: #111223;
+    background-color: #282c44;
     height: 100vh;
 }
 
@@ -117,12 +117,6 @@
     display: flex;
     flex-direction: row;
     gap: 25px;
-}
-
-.headshot {
-    height: 200px;
-    border-radius: 150px;
-    border: 1px solid white;
 }
 
 .projects {
