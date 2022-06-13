@@ -7,7 +7,7 @@ from folium.plugins import FloatImage
 
 load_dotenv()
 app = Flask(__name__)
-data = open("app/static/data.json")
+data = open("static/data.json")
 data = json.load(data)
 
 
@@ -67,5 +67,5 @@ def folium_map():
     image_file = "/static/img/legend.jpg"
     FloatImage(image_file, bottom=0, left=0).add_to(folium_map)
 
-    folium_map.save("app/templates/map.html")
+    folium_map.save("templates/map.html")
     return render_template("mapindex.html")
