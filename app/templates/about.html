@@ -28,46 +28,10 @@
 
             <div class="carousel-item active">
                 <div class="card">
-                    <img class="card-img-top-luke" src="../static/img/luke/luke_jacket.jpg" alt="luke jacket">
+                    <img class="card-img-top" src="" alt="">
                     <div class="card-body">
-                        <h5 class="card-title">{{data.luke.name}}</h5>
-                        <p class="card-text">{{data.luke.about}}</p>
-                        <b class="card-text">Education</b>
-                        <p class="card-text">{{data.luke.education}}</p>
-                        <b class="card-text">Hobbies</b>
-                        <p class="card-text">I enjoy {{data.luke.hobbies}}</p>
 
-                        <div class="well text-center luke-hobby-imgs">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <a><img src="../static/img/luke/luke_valley.jpg" alt="luke in the valley"
-                                            class="img-fluid img-hobby1"></a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a><img src="../static/img/luke/Sophomore_Year.jpg" alt="luke playing soccer"
-                                            class="img-fluid img-hobby2"></a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <b class="card-text">Contact</b>
-                        <br>
-                        <a href={{ data.luke.social[0].val }}>
-                            <i class="fa fa-linkedin-square"></i>
-                        </a>
-                        <a href={{ data.luke.social[1].val }}>
-                            <i class="fa fa-github"></i>
-                        </a>
-                        <a href="mailto:{{ data.luke.social[2].val }}">
-                            <i class="fa fa-envelope"></i>
-                        </a>
-
-                        <br>
-
-
-                        <a href="{{ url_for('experience') }}" class="btn btn-lg btn-dark btn-outline-light">
-                            See More! </a>
+                        <!-- Add card body (maybe move experience over here) -->
 
                     </div>
                 </div>
@@ -119,44 +83,10 @@
 
             <div class="carousel-item">
                 <div class="card">
-                    <img class="card-img-top-mustafa" src="../static/img/mustafa/mustafa_profile.jpg"
-                        alt="Card image cap">
+                    <img class="card-img-top-mustafa" src=""
+                        alt="">
                     <div class="card-body">
-                        <h5 class="card-title">{{data.mustafa.name}}</h5>
-                        <p class="card-text">{{data.mustafa.about}}</p>
-                        <b class="card-text">Education</b>
-                        <p class="card-text">{{data.mustafa.education}}</p>
-                        <b class="card-text">Hobbies</b>
-                        <p class="card-text">I enjoy {{data.mustafa.hobbies}}</p>
-
-                        <div class="well text-center mus-hobby-imgs">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <a><img src="../static/img/mustafa/basketball.jpg" alt="inn_logo"
-                                            class="img-fluid img-hobby1"></a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a><img src="../static/img/mustafa/persona.jpg" alt="ccs_logo"
-                                            class="img-fluid img-hobby2"></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <b class="card-text">Contact</b>
-                        <br>
-                        <a href={{ data.mustafa.social[0].val }}>
-                            <i class="fa fa-linkedin-square"></i>
-                        </a>
-                        <a href={{ data.mustafa.social[1].val }}>
-                            <i class="fa fa-github"></i>
-                        </a>
-                        <a href="mailto:{{ data.mustafa.social[2].val }}">
-                            <i class="fa fa-envelope"></i>
-                        </a>
-
-                        <br>
-                        <a href="{{ url_for('experience') }}" class="btn btn-lg btn-dark btn-outline-light">
-                            See More! </a>
+                       <!-- Add card body here: maybe more about experience (elaborate on professional experience) -->
                     </div>
                 </div>
             </div>

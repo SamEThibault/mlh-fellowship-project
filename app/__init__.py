@@ -15,14 +15,14 @@ data = json.load(data)
 @app.route("/")
 def index():
     return render_template(
-        "index.html", title="Team Jungle Portfolio", url=os.getenv("URL"), data=data
+        "index.html", title="Sam Thibault", url=os.getenv("URL"), data=data
     )
 
 
 @app.route("/about")
 def about():
     return render_template(
-        "about.html", title="Team Jungle Portfolio", url=os.getenv("URL"), data=data
+        "about.html", title="Sam Thibault", url=os.getenv("URL"), data=data
     )
 
 
@@ -30,7 +30,7 @@ def about():
 def experience():
     return render_template(
         "experience.html",
-        title="Team Jungle Portfolio",
+        title="Sam Thibault",
         url=os.getenv("URL"),
         data=data,
     )
@@ -39,7 +39,7 @@ def experience():
 @app.route("/map")
 def map():
     return render_template(
-        "map.html", title="Team Jungle Portfolio", url=os.getenv("URL"), data=data
+        "map.html", title="Sam Thibault", url=os.getenv("URL"), data=data
     )
 
 
@@ -64,8 +64,8 @@ def folium_map():
         )
     )
 
-    image_file = "/static/img/legend.jpg"
-    FloatImage(image_file, bottom=0, left=0).add_to(folium_map)
+    
+
 
     folium_map.save("templates/map.html")
     return render_template("mapindex.html")

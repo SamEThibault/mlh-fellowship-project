@@ -39,111 +39,8 @@
             }
         ]
     },
-    "mustafa": {
-        "name": "Mustafa Abdulrahman",
-        "about": "Hey, I'm Mustafa, from Milton and am studying in Toronto, ON. I have experience in full-stack development and am keen on learning about distributed systems.",
-        "about_short": "Hey, I'm Mustafa, from Milton and I am studying in Toronto, ON.",
-        "education": "Rising sophomore studying computer engineering at the University of Toronto.",
-        "work_experience": "STEM Educator intern, IEEE Web PM",
-        "hobbies": "playing basketball, watching anime, and playing jrpgs.",
-        "map_data": "Canada, USA, India",
-        "social": [
-            {
-                "name": "LinkedIn",
-                "val": "https://www.linkedin.com/in/mus123/"
-            },
-            {
-                "name": "GitHub",
-                "val": "https://github.com/Mustaballer"
-            },
-            {
-                "name": "Email",
-                "val": "mus2003.abdul@gmail.com"
-            }
-        ],
-        "projects": [
-            {
-                "name": "NCAR",
-                "link": "https://github.com/Mustaballer/NCAR",
-                "desc": "Infrared nighttime collision avoidance system"
-            },
-            {
-                "name": "MyJikanBot",
-                "link": "https://github.com/Mustaballer/MyJikanBot",
-                "desc": "MYJIKANBOT is a discord bot that retrieves and delivers your favorite anime or manga"
-            },
-            {
-                "name": "ChillChat",
-                "link": "https://github.com/Mustaballer/ChillChat",
-                "desc": "Chat web app supporting chat rooms with chill music and a gorgeous background"
-            }
-        ]
-    },
-    "luke": {
-        "name": "Luke Cheseldine",
-        "about": "Hi! I'm Luke and I'm from Maine! I'm currently studying computer science in Toronto. I'm interested in full-stack web development and computer vision. I'm also super stoked to learn more this summer about everything that goes on behind the scenes to deploy and support web apps!",
-        "about_short": "Hi! I'm Luke and I'm from Maine! I'm currently studying computer science in Toronto.",
-        "education": "Rising sophomore studying computer science at the University of Toronto.",
-        "work_experience": "IEEE Webmaster Associate, Soccer Coach",
-        "hobbies": "hiking, surfing, soccer, and skateboarding.",
-        "map_data": "Hawaii, Spain, England, Canada",
-        "social": [
-            {
-                "name": "LinkedIn",
-                "val": "https://www.linkedin.com/in/lukechessr/"
-            },
-            {
-                "name": "GitHub",
-                "val": "https://github.com/lukecheseldine"
-            },
-            {
-                "name": "Email",
-                "val": "luke.cheseldine@mail.utoronto.ca"
-            }
-        ],
-        "projects": [
-            {
-                "name": "Sudoku Solver",
-                "link": "https://github.com/lukecheseldine/SudokuSolver",
-                "desc": "Python sudoku solver to instantly solve 9x9 boards"
-            },
-            {
-                "name": "SoundSearch",
-                "link": "https://github.com/lukecheseldine/SoundSearch",
-                "desc": "Flask app to recommend local concerts based on user's music taste"
-            },
-            {
-                "name": "Etch-a-Sketch",
-                "link": "https://github.com/lukecheseldine/etch-a-sketch",
-                "desc": "Drawing app available in the browser"
-            }
-        ]
-    },
+
   "locations": [
-        {
-            "name": "Haleakala National Park, Hawaii",
-            "latitude": 20.770250,
-            "longitude": -156.239304,
-            "color": "blue"
-        },
-        {
-            "name": "La Sagrada Familia, Spain",
-            "latitude": 41.546322,
-            "longitude": 2.447750,
-            "color": "blue"
-        },
-        {
-            "name": "Brighton Palace Pier, UK",
-            "latitude": 50.8169,
-            "longitude": -0.1367,
-            "color": "blue"
-        },
-        {
-            "name": "Grand Teton National Park, USA",
-            "latitude": 43.790428,
-            "longitude": -110.681763,
-            "color": "blue"
-        },
         {
             "name": "Orlando, Florida, USA",
             "latitude": 28.538336,
@@ -161,24 +58,6 @@
             "latitude": 46.829853,
             "longitude": -71.254028,
             "color": "green"
-        },
-        {
-            "name": "Montreal, Canada",
-            "latitude": 45.5017,
-            "longitude": -73.5673,
-            "color": "red"
-        },
-        {
-            "name": "Hyderabad, India",
-            "latitude": 17.3850,
-            "longitude": 78.4867,
-            "color": "red"
-        },
-        {
-            "name": "Doha Qatar",
-            "latitude": 25.2854,
-            "longitude": 51.5310,
-            "color": "red"
         }
     ]
 }
