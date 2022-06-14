@@ -42,19 +42,22 @@
 }
 
 .img-hobby1 {
-    max-height: 75%;
+    max-height: 45%;
     overflow: hidden;
     border: 1px solid white;
+
+    position: relative;
+    top: 60px;
 }
 
 .img-hobby2 {
-    max-height: 75%;
+    max-height: 70%;
     overflow: hidden;
     border: 1px solid white;
+
+    position: relative;
+    top: 30px;
 }
 
-.sam-hobby-imgs {
-    margin-bottom: -10%;
-    margin-left: 30px;
-}
+
 
