@@ -4,7 +4,7 @@
 With the help of [Luke](https://github.com/lukecheseldine) and [Mustafa](https://github.com/Mustaballer), this portfolio site was born during the first week of our MLH Fellowship's Orientation Hackathon. We wanted to build a website with an intuitive structure to prioritize UX. 
 
 ## Installation
-The application is currently deployed on a CentOS server [right here!](samthibault.live) The Bash redeploy script is included for the user's convenience to re-base and deploy the most recent version of the application with a single command.
+The application is currently deployed on a CentOS server [right here!](http://samthibault.live) The Bash redeploy script is included for the user's convenience to re-base and deploy the most recent version of the application with a single command.
 
 ### Mac/Linux
 1. Clone the repo via ssh: `git clone git@github.com:MLH-Fellowship/project-team-jungle.git`
