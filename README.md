@@ -1,4 +1,4 @@
-# Production Engineering - Week 1 - Portfolio Site
+# Production Engineering - Portfolio Site
 
 ## Inspiration
 With the help of [Luke](https://github.com/lukecheseldine) and [Mustafa](https://github.com/Mustaballer), this portfolio site was born during the first week of our MLH Fellowship's Orientation Hackathon. We wanted to build a website with an intuitive structure to prioritize UX. 
