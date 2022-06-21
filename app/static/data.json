@@ -51,25 +51,5 @@
                 "desc": "Spring Boot web application with a MongoDB database which allows users to access automobile data"
             }
         ]
-    },
-    "locations": [
-        {
-            "name": "Orlando, Florida, USA",
-            "latitude": 28.538336,
-            "longitude": -81.379234,
-            "color": "green"
-        },
-        {
-            "name": "New York City, USA",
-            "latitude": 40.7127281,
-            "longitude": -74.0060152,
-            "color": "green"
-        },
-        {
-            "name": "Quebec City, Canada",
-            "latitude": 46.829853,
-            "longitude": -71.254028,
-            "color": "green"
-        }
-    ]
+    }
 }
