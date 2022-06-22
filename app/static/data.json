@@ -7,19 +7,45 @@
         "work_experience": [
             {
                 "name": "MLH Production Engineering Fellow",
-                "val": "Develop and deploy this web application using GitHub best practices such as PRs, code reviews, and issues."
+                "tasks": [
+                    {
+                        "val": "Develop web applications as a team using GitHub best practices such as PRs, code reviews, and issues"
+                    },
+                    {
+                        "val": "Deploy Flask web applications through a CentOS VPS"
+                    },
+                    {
+                        "val": "Develop Bash scripts and commands to streamline deployment processes and manipulate data"
+                    }
+                ]
             },
             {
                 "name": "Computer Science Tutor",
-                "val": "Help High school-level students learn the fundamental concepts of the Java programming language."
+                "tasks": [
+                    {
+                        "val": "Help High school-level students learn the fundamental concepts of the Java programming language"
+                    },
+                    {
+                        "val": "Review documentation to ensure lesson plans cater to varying Java Platform releases"
+                    }
+                ]
             },
             {
                 "name": "Queen's Racing Electrical Team Member",
-                "val": "Analyze PCB designs of electrical components and analyse MatLab SimuLink models and documentation."
+                "tasks": [
+                    {
+                        "val": "Analyze PCB designs of electrical components using digital logic fundamentals"
+                    },
+                    {
+                        "val": "Collaborate with sub-teams to deliver an efficient and powerful race car"
+                    },
+                    {
+                        "val": "Analyse MatLab SimuLink models and repository documentation to develop torque vectoring tools"
+                    }
+                ]
             }
         ],
         "hobbies": "working on cars, buildings computers, and playing video games.",
-        "map_data": "Canada, USA",
         "social": [
             {
                 "name": "LinkedIn",

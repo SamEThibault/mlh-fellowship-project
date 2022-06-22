@@ -30,23 +30,33 @@
                     <div class="profile">
 
                         <div class="brief">
-                            <h3>Professional</h3>
-                            <h4>{{data.sam.work_experience[0].name}}</h4>
-                            <p>{{data.sam.work_experience[0].val}}</p>
+                            <h1>Professional</h1>
+
+                            <h2>{{data.sam.work_experience[0].name}}</h2>
+                            <img class="work-img-mlh" src="../static/img/sam/mlh.jpg" alt="mlh img" />
+
+                            <p>- {{data.sam.work_experience[0].tasks[0].val}}</p>
+                            <p>- {{data.sam.work_experience[0].tasks[1].val}}</p>
+                            <p>- {{data.sam.work_experience[0].tasks[2].val}}</p>
 
                             <br />
-                            <h4>{{data.sam.work_experience[1].name}}</h4>
-                            <p>{{data.sam.work_experience[1].val}}</p>
+                            <h2>{{data.sam.work_experience[1].name}}</h2>
+                            <img class="work-img-moh" src="../static/img/sam/moh.png" alt="moh img" />
+                            <p>- {{data.sam.work_experience[1].tasks[0].val}}</p>
+                            <p>- {{data.sam.work_experience[1].tasks[1].val}}</p>
 
                             <br />
-                            <h4>{{data.sam.work_experience[2].name}}</h4>
-                            <p>{{data.sam.work_experience[2].val}}</p>
+                            <h2>{{data.sam.work_experience[2].name}}</h2>
+                            <img class="work-img-fsae" src="../static/img/sam/qfsae.jpg" alt="fsae img" />
+                            <p>- {{data.sam.work_experience[2].tasks[0].val}}</p>
+                            <p>- {{data.sam.work_experience[2].tasks[1].val}}</p>
+                            <p>- {{data.sam.work_experience[2].tasks[2].val}}</p>
 
                         </div>
                     </div>
                 </div>
 
-                <h3>Projects</h3>
+                <h1>Projects</h1>
 
                 <div id="projects" style="margin-top:30px;margin-bottom:30px;">
 
@@ -120,7 +130,7 @@
                                         <a href={{ data.sam.projects[3].link }} class="btn btn-dark">Check it out!</a>
                                         <br />
                                         <br />
-                                        
+
                                     </div>
                                 </div>
                             </div>
