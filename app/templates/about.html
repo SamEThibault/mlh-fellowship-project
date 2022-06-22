@@ -24,27 +24,28 @@
             <b class="card-text">Hobbies</b>
             <p class="card-text">I enjoy {{data.sam.hobbies}}</p>
 
-            <div class="well text-center sam-hobby-imgs">
+            <div class="container w-50">
                 <div class="row">
-                    <div class="col-md-6 car-container">
+                    <div class="col-sm-6 col-lg-offset-2 car-container">
                         <a><img src="../static/img/newCarIcon.png" alt="cars" class="img-fluid img-hobby1"></a>
                     </div>
-                    <div class="col-md-6 comp-container">
+                    <div class="col-sm-6 comp-container">
                         <a><img src="../static/img/desktop.jpg" alt="computer" class="img-fluid img-hobby2"></a>
                     </div>
+                    
                 </div>
             </div>
 
             <b class="card-text">Contact</b>
             <br>
             <a href={{ data.sam.social[0].val }}>
-                <i class="fa fa-linkedin-square"></i>
+                <div class="fa fa-linkedin-square fa-3x"></div>
             </a>
             <a href={{ data.sam.social[1].val }}>
-                <i class="fa fa-github"></i>
+                <div class="fa fa-github fa-3x"></div>
             </a>
             <a href="mailto:{{ data.sam.social[2].val }}">
-                <i class="fa fa-envelope"></i>
+                <div class="fa fa-envelope fa-3x"></div>
             </a>
 
             <br>

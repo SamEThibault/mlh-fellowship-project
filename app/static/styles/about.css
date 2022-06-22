@@ -6,7 +6,7 @@
 .header-text {
     text-align: center;
     color: white;
-    font-size: 4vw;
+    font-size: 4rem;
 }
 
 .header {
@@ -42,24 +42,21 @@
 }
 
 .img-hobby1 {
-    max-height: 45%;
-    overflow: hidden;
-    border: 1px solid white;
 
-    position: relative;
-    top: 30px;
+    max-height: 50%;
     margin-top: 50px;
 }
 
 .img-hobby2 {
-    max-height: 70%;
-    overflow: hidden;
-    border: 1px solid white;
-
-    position: relative;
-   
-    margin-top: 50px;
+    max-height: 100%;
+    margin-top: 10px;
 }
 
+.fa {
+    color: black;
+    padding: 2%;
+}
 
-
+.icons {
+    
+}

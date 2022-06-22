@@ -6,22 +6,10 @@ body {
     margin: 0px;
 }
 
-
-
 .intro,
 .about,
 .experience {
     margin-top: 300px;
-}
-
-.folium {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-}
-
-.section {
-    background-image: url("../img/mapbackground.jpg");
 }
 
 .header-text {
@@ -35,5 +23,6 @@ body {
 }
 
 .navbar{
-    background-color: #171010 !important;
+    background-color: #101c14 !important;
+    padding-right: 12px !important;
 }

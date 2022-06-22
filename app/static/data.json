@@ -7,19 +7,45 @@
         "work_experience": [
             {
                 "name": "MLH Production Engineering Fellow",
-                "val": "Develop and deploy this web application using GitHub best practices such as PRs, code reviews, and issues."
+                "tasks": [
+                    {
+                        "val": "Develop web applications as a team using GitHub best practices such as PRs, code reviews, and issues"
+                    },
+                    {
+                        "val": "Deploy Flask web applications through a CentOS VPS"
+                    },
+                    {
+                        "val": "Develop Bash scripts and commands to streamline deployment processes and manipulate data"
+                    }
+                ]
             },
             {
                 "name": "Computer Science Tutor",
-                "val": "Help High school-level students learn the fundamental concepts of the Java programming language."
+                "tasks": [
+                    {
+                        "val": "Help High school-level students learn the fundamental concepts of the Java programming language"
+                    },
+                    {
+                        "val": "Review documentation to ensure lesson plans cater to varying Java Platform releases"
+                    }
+                ]
             },
             {
                 "name": "Queen's Racing Electrical Team Member",
-                "val": "Analyze PCB designs of electrical components and analyse MatLab SimuLink models and documentation."
+                "tasks": [
+                    {
+                        "val": "Analyze PCB designs of electrical components using digital logic fundamentals"
+                    },
+                    {
+                        "val": "Collaborate with sub-teams to deliver an efficient and powerful race car"
+                    },
+                    {
+                        "val": "Analyse MatLab SimuLink models and repository documentation to develop torque vectoring tools"
+                    }
+                ]
             }
         ],
         "hobbies": "working on cars, buildings computers, and playing video games.",
-        "map_data": "Canada, USA",
         "social": [
             {
                 "name": "LinkedIn",
@@ -36,19 +62,24 @@
         ],
         "projects": [
             {
-                "name": "Time Savior",
+                "name": "Hackville 2022 - TimeSavior",
                 "link": "https://github.com/SamEThibault/time-savior",
-                "desc": "Spring Boot web application that suggests days to complete your weekly tasks based on your schedule"
+                "desc": "Spring Boot web application that suggests days to complete weekly tasks based on a user's schedule."
             },
             {
-                "name": "CookHack",
+                "name": "QHACKS Hackathon, 1st place HOTG Category - CookHack",
                 "link": "https://github.com/SamEThibault/cook-hack",
-                "desc": "React.Js web application that suggests recipes to cook based on available ingredients"
+                "desc": "React.Js web application that suggests recipes to cook based on a user's available ingredients."
             },
             {
-                "name": "Mongo Wheels",
+                "name": "Personal Project - MongoWheels",
                 "link": "https://github.com/SamEThibault/mongo-wheels",
-                "desc": "Spring Boot web application with a MongoDB database which allows users to access automobile data"
+                "desc": "Spring Boot web application with a MongoDB database which allows users to access automobile data."
+            },
+            {
+                "name": "NewHacks 2021, 3rd place overall - NoteHack",
+                "link": "https://github.com/SamEThibault/note-hack",
+                "desc": "Note-sharing application that allows students to share their electronic notes."
             }
         ]
     }
