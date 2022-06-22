@@ -1,9 +1,7 @@
 import os
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
-import folium
 import json
-from folium.plugins import FloatImage
 
 load_dotenv()
 app = Flask(__name__)
