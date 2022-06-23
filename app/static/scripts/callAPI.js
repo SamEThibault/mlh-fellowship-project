@@ -28,7 +28,7 @@ async function submitForm() {
     };
 
     // then request, log the results or error msg, and call the getAll request
-    fetch("http://localhost:5000/api/timeline_post", requestOptionsP)
+    fetch("http://localhost:80/api/timeline_post", requestOptionsP)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error))
@@ -50,7 +50,7 @@ async function getAll() {
     };
 
     // fetch all documents from db
-    fetch("http://localhost:5000/api/timeline_post", requestOptionsG)
+    fetch("http://localhost:80/api/timeline_post", requestOptionsG)
         .then(response => response.text())
         .then(results => {
 
