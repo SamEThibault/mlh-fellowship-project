@@ -40,8 +40,8 @@ async function getAll() {
 
     var myHeadersG = new Headers();
     myHeadersG.append("Access-Control-Allow-Origin", "*")
-    myHeadersP.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
-    myHeadersP.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
+    myHeadersG.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
+    myHeadersG.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
 
     var requestOptionsG = {
         method: 'GET',
