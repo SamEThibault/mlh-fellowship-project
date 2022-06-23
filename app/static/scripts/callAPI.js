@@ -1,9 +1,13 @@
+// since getAll() must execute on load to populate the table:
+document.addEventListener("DOMContentLoaded", getAll())
+
 async function submitForm() {
 
     // POST
     // specify data format
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append("Access-Control-Allow-Origin", "*")
 
     // add search parameters based on form's inputs
     var urlencoded = new URLSearchParams();
@@ -27,15 +31,19 @@ async function submitForm() {
         .finally(getAll())
 }
 
-// get all documents
+// get all documents and populate frontend table
 async function getAll() {
+
+    var myHeaders = new Headers();
+    myHeaders.append("Access-Control-Allow-Origin", "*")
 
     var requestOptions = {
         method: 'GET',
+        headers: myHeaders,
         redirect: 'follow'
     };
 
-
+    // fetch all documents from db
     fetch("http://localhost:5000/api/timeline_post", requestOptions)
         .then(response => response.text())
         .then(results => {
@@ -44,6 +52,7 @@ async function getAll() {
             var text = JSON.parse(results).timeline_posts
             console.log(text)
 
+            // to populate frontend table, count columns
             var col = []
             for (var i = 0; i < text.length; i++) {
                 for (var key in text[i]) {
@@ -53,10 +62,12 @@ async function getAll() {
                 }
             }
 
+            // find table to fill
             var table = document.getElementById("table")
 
             var tr = table.insertRow(-1)
       
+            // insert a cell for each document field
             for (var i = 0; i < text.length; i++) {
 
                 tr = table.insertRow(-1);
@@ -67,14 +78,7 @@ async function getAll() {
                 }
             }
 
-
-
-            // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-            var divContainer = document.getElementById("showData");
-            divContainer.innerHTML = "";
-            divContainer.appendChild(table);
-
+            
         })
         .catch(error => console.log('error', error))
-
 }
