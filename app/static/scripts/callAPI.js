@@ -10,6 +10,8 @@ async function submitForm() {
     var myHeadersP = new Headers();
     myHeadersP.append("Content-Type", "application/x-www-form-urlencoded");
     myHeadersP.append("Access-Control-Allow-Origin", "*")
+    myHeadersP.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
+    myHeadersP.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
 
     // add search parameters based on form's inputs
     var urlencodedP = new URLSearchParams();
@@ -38,6 +40,8 @@ async function getAll() {
 
     var myHeadersG = new Headers();
     myHeadersG.append("Access-Control-Allow-Origin", "*")
+    myHeadersP.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
+    myHeadersP.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
 
     var requestOptionsG = {
         method: 'GET',
