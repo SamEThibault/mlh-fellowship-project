@@ -32,7 +32,7 @@ async function submitForm() {
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error))
-        .finally(getAll())
+        // .finally(getAll())
 }
 
 // get all documents and populate frontend table
