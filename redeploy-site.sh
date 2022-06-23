@@ -6,7 +6,7 @@ tmux kill-server
 #this ensures port:80 is not in use since we want to host the site through the default http port
 sudo fuser -n tcp -k 80
 
-echo "fetching most recent repository changes...
+echo "fetching most recent repository changes..."
 cd /home/GitHub/mlh-fellowship-project/app
 git fetch && git reset origin/main --hard
 
