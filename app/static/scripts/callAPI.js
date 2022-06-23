@@ -3,7 +3,9 @@ window.onload = function() {
     getAll()
 }
 
-async function submitForm() {
+const element = document.querySelector('form')
+element.addEventListener('submit', event => {
+    event.preventDefault();
 
     // POST
     // specify data format
@@ -24,7 +26,8 @@ async function submitForm() {
         method: 'POST',
         headers: myHeadersP,
         body: urlencodedP,
-        redirect: 'follow'
+        redirect: 'follow',
+        mode: 'no-cors'
     };
 
     // then request, log the results or error msg, and call the getAll request
@@ -32,11 +35,14 @@ async function submitForm() {
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error))
-        // .finally(getAll())
-}
+        .finally(function(){
+            window.location.reload()
+        })
+})
+
 
 // get all documents and populate frontend table
-async function getAll() {
+function getAll() {
 
     var myHeadersG = new Headers();
     myHeadersG.append("Access-Control-Allow-Origin", "*")
@@ -46,7 +52,8 @@ async function getAll() {
     var requestOptionsG = {
         method: 'GET',
         headers: myHeadersG,
-        redirect: 'follow'
+        redirect: 'follow',
+        mode: 'no-cors'
     };
 
     // fetch all documents from db
