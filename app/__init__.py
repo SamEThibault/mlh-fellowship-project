@@ -5,10 +5,13 @@ import json
 from peewee import *
 import datetime
 from playhouse.shortcuts import model_to_dict
+from flask_cors import CORS, cross_origin
 
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
+
 data = open("static/data.json")
 data = json.load(data)
 
@@ -60,6 +63,17 @@ def experience():
         title="Sam Thibault - Portfolio",
         url=os.getenv("URL"),
         data=data,
+    )
+
+
+# on page load, GET all timeline posts and send through data Jinja variable to display
+@app.route("/timeline")
+def timeline():
+    return render_template(
+        "timeline.html",
+        title="Sam Thibault - Portfolio",
+        url=os.getenv("URL"),
+        data=get_time_line_post(),
     )
 
 

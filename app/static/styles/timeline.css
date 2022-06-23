@@ -1,0 +1,24 @@
+
+
+.main {
+    background-color: #282c44;
+    color: white;
+
+    display: inline-block;
+
+    width: 100%;
+    height:max-content;
+
+    align-items: center;
+    text-align: center;
+}
+
+.title {
+    font-size: 4rem;
+    padding: 20px;
+}
+
+.btn {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

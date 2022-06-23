@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/timeline.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="main">
+    <h1 class="title">Timeline</h1>
+
+    <div class="card text-dark bg-light mb-5 mx-auto" style="max-width: 40rem;">
+        <div class="card-body">
+            <h5 class="card-title">Add a post to the timeline</h5>
+
+            <form>
+                <div class="mb-3">
+                    <label for="inputName" class="form-label">Name</label>
+                    <input type="name" class="form-control" id="inputName" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for=inputEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail">
+                </div>
+                <label for="inputContent" class="form-label">Content</label>
+                <textarea class="form-control" id="inputContent" rows="3"></textarea>
+
+                <button type="submit" onclick="submitForm()" class="btn btn-dark">Submit</button>
+            </form>
+            <p class="card-text">This information will be added to the existing timeline below.</p>
+        </div>
+    </div>
+
+    <!-- this BS table is dynamically filled by callAPI's getALL() function -->
+    <table id="table" class="table table-light mx-auto" style="max-width:60rem;">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Created at</th>
+            <th scope="col">Content</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+</div>
+
+<script src="../static/scripts/callAPI.js"></script>
+
+{% endblock %}
