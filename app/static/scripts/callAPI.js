@@ -1,30 +1,32 @@
 // since getAll() must execute on load to populate the table:
-document.addEventListener("DOMContentLoaded", getAll())
+window.onload = function() {
+    getAll()
+}
 
 async function submitForm() {
 
     // POST
     // specify data format
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-    myHeaders.append("Access-Control-Allow-Origin", "*")
+    var myHeadersP = new Headers();
+    myHeadersP.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeadersP.append("Access-Control-Allow-Origin", "*")
 
     // add search parameters based on form's inputs
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("name", document.getElementById("inputName").value);
-    urlencoded.append("email", document.getElementById("inputEmail").value);
-    urlencoded.append("content", document.getElementById("inputContent").value);
+    var urlencodedP = new URLSearchParams();
+    urlencodedP.append("name", document.getElementById("inputName").value);
+    urlencodedP.append("email", document.getElementById("inputEmail").value);
+    urlencodedP.append("content", document.getElementById("inputContent").value);
 
     // populate the request details
-    var requestOptions = {
+    var requestOptionsP = {
         method: 'POST',
-        headers: myHeaders,
-        body: urlencoded,
+        headers: myHeadersP,
+        body: urlencodedP,
         redirect: 'follow'
     };
 
     // then request, log the results or error msg, and call the getAll request
-    fetch("http://localhost:5000/api/timeline_post", requestOptions)
+    fetch("http://localhost:5000/api/timeline_post", requestOptionsP)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error))
@@ -34,17 +36,17 @@ async function submitForm() {
 // get all documents and populate frontend table
 async function getAll() {
 
-    var myHeaders = new Headers();
-    myHeaders.append("Access-Control-Allow-Origin", "*")
+    var myHeadersG = new Headers();
+    myHeadersG.append("Access-Control-Allow-Origin", "*")
 
-    var requestOptions = {
+    var requestOptionsG = {
         method: 'GET',
-        headers: myHeaders,
+        headers: myHeadersG,
         redirect: 'follow'
     };
 
     // fetch all documents from db
-    fetch("http://localhost:5000/api/timeline_post", requestOptions)
+    fetch("http://localhost:5000/api/timeline_post", requestOptionsG)
         .then(response => response.text())
         .then(results => {
 

@@ -72,8 +72,7 @@ def timeline():
     return render_template(
         "timeline.html",
         title="Sam Thibault - Portfolio",
-        url=os.getenv("URL"),
-        data=get_time_line_post(),
+        url=os.getenv("URL")
     )
 
 
