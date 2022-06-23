@@ -1,4 +1,4 @@
-function submitForm() {
+async function submitForm() {
 
     // POST
     // specify data format
@@ -19,7 +19,7 @@ function submitForm() {
         redirect: 'follow'
     };
 
-    // then request, log the results or error msg
+    // then request, log the results or error msg, and call the getAll request
     fetch("http://localhost:5000/api/timeline_post", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
@@ -27,10 +27,8 @@ function submitForm() {
         .finally(getAll())
 }
 
-
-function getAll() {
-
-    console.log("we made it")
+// get all documents
+async function getAll() {
 
     var requestOptions = {
         method: 'GET',
@@ -40,7 +38,43 @@ function getAll() {
 
     fetch("http://localhost:5000/api/timeline_post", requestOptions)
         .then(response => response.text())
-        .then(text => document.getElementById("timeline").innerText = text)
+        .then(results => {
+
+            // at this point, response is now a JSON object
+            var text = JSON.parse(results).timeline_posts
+            console.log(text)
+
+            var col = []
+            for (var i = 0; i < text.length; i++) {
+                for (var key in text[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key)
+                    }
+                }
+            }
+
+            var table = document.getElementById("table")
+
+            var tr = table.insertRow(-1)
+      
+            for (var i = 0; i < text.length; i++) {
+
+                tr = table.insertRow(-1);
+
+                for (var j = col.length - 1; j >= 0; j--) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = text[i][col[j]];
+                }
+            }
+
+
+
+            // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+            var divContainer = document.getElementById("showData");
+            divContainer.innerHTML = "";
+            divContainer.appendChild(table);
+
+        })
         .catch(error => console.log('error', error))
 
 }
