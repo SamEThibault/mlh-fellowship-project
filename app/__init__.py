@@ -5,9 +5,11 @@ import json
 from peewee import *
 import datetime
 from playhouse.shortcuts import model_to_dict
+from flask_cors import CORS
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 
 data = open("static/data.json")
 data = json.load(data)
