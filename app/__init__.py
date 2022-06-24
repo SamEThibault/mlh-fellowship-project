@@ -12,6 +12,7 @@ app = Flask(__name__)
 # Change this open path depending on localhost OS folder structure/location
 pathCENTOS = "/root/GitHub/mlh-fellowship-project/app/static/data.json"
 pathWINDOWS = "static/data.json"
+
 data = open(pathCENTOS)
 data = json.load(data)
 
@@ -70,9 +71,7 @@ def experience():
 @app.route("/timeline")
 def timeline():
     return render_template(
-        "timeline.html",
-        title="Sam Thibault - Portfolio",
-        url=os.getenv("URL")
+        "timeline.html", title="Sam Thibault - Portfolio", url=os.getenv("URL")
     )
 
 
