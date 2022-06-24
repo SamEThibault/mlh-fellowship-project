@@ -5,13 +5,12 @@ import json
 from peewee import *
 import datetime
 from playhouse.shortcuts import model_to_dict
-from flask_cors import CORS
 
 load_dotenv()
 app = Flask(__name__)
-# CORS(app)
 
-data = open("./static/data.json")
+# Change this open path depending on localhost OS folder structure/location
+data = open("/root/GitHub/mlh-fellowship-project/app/static/data.json")
 data = json.load(data)
 
 # MySQL db variable using peewee and environment variables
