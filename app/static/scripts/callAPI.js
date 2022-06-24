@@ -31,7 +31,7 @@ element.addEventListener('submit', event => {
     };
 
     // then request, log the results or error msg, and call the getAll request
-    fetch("http://samthibault.live:5000/api/timeline_post", requestOptionsP)
+    fetch("/api/timeline_post", requestOptionsP)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error))
@@ -57,7 +57,7 @@ function getAll() {
     };
 
     // fetch all documents from db
-    fetch("http://samthibault.live:5000/api/timeline_post", requestOptionsG)
+    fetch("/api/timeline_post", requestOptionsG)
         .then(response => response.text())
         .then(results => {
 
