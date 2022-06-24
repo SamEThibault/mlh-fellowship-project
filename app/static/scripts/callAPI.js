@@ -1,11 +1,42 @@
 // since getAll() must execute on load to populate the table:
-window.onload = function() {
+window.onload = function () {
     getAll()
 }
 
-const element = document.querySelector('form')
-element.addEventListener('submit', event => {
-    event.preventDefault();
+// listens for the form to submit (DELETE)
+const removeForm = document.querySelector('#rmForm')
+removeForm.addEventListener('submit', event => {
+    event.preventDefault()
+
+    // DELETE
+    // specify data format
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    // add parameters: the id that is entered by the user
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("id", document.getElementById('inputID').value);
+
+    var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+    };
+
+    fetch("/api/timeline_post", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error))
+        .finally(function () {
+            window.location.reload()
+        })
+})
+
+// listens for the form to submit (POST)
+const addForm = document.querySelector('#addForm')
+addForm.addEventListener('submit', event => {
+    event.preventDefault() // ensure no browser-specific action on form submit
 
     // POST
     // specify data format
@@ -35,7 +66,7 @@ element.addEventListener('submit', event => {
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error))
-        .finally(function(){
+        .finally(function () {
             window.location.reload()
         })
 })
@@ -79,7 +110,7 @@ function getAll() {
             var table = document.getElementById("table")
 
             var tr = table.insertRow(-1)
-      
+
             // insert a cell for each document field
             for (var i = 0; i < text.length; i++) {
 
@@ -91,7 +122,7 @@ function getAll() {
                 }
             }
 
-            
+
         })
         .catch(error => console.log('error', error))
 }

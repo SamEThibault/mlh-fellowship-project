@@ -16,7 +16,7 @@
         <div class="card-body">
             <h5 class="card-title">Add a post to the timeline</h5>
 
-            <form>
+            <form id="addForm">
                 <div class="mb-3">
                     <label for="inputName" class="form-label">Name</label>
                     <input type="name" class="form-control" id="inputName" aria-describedby="emailHelp">
@@ -34,20 +34,37 @@
         </div>
     </div>
 
+    <!-- Delete form wrapped inside a white card -->
+    <div class="card text-dark bg-light mb-5 mx-auto" style="max-width: 25rem;">
+        <div class="card-body">
+            <h5 class="card-title">Delete a post from the timeline</h5>
+            <form id="rmForm" class="row">
+                <div class="col">
+                    <label for="inputID" class="form-label">Enter the post ID</label>
+                    <input type="name" class="form-control" id="inputID" aria-describedby="emailHelp">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-dark">Delete Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
     <!-- this BS table is dynamically filled by callAPI's getALL() function -->
     <table id="table" class="table table-light mx-auto" style="max-width:60rem;">
         <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">ID</th>
-            <th scope="col">Email</th>
-            <th scope="col">Created at</th>
-            <th scope="col">Content</th>
-          </tr>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">Created at</th>
+                <th scope="col">Content</th>
+            </tr>
         </thead>
         <tbody>
         </tbody>
-      </table>
+    </table>
 </div>
 
 <script src="../static/scripts/callAPI.js"></script>
