@@ -11,7 +11,7 @@ load_dotenv()
 app = Flask(__name__)
 # CORS(app)
 
-data = open("/static/data.json")
+data = open("./static/data.json")
 data = json.load(data)
 
 # MySQL db variable using peewee and environment variables
