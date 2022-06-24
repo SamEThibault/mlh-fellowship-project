@@ -10,7 +10,9 @@ load_dotenv()
 app = Flask(__name__)
 
 # Change this open path depending on localhost OS folder structure/location
-data = open("/root/GitHub/mlh-fellowship-project/app/static/data.json")
+pathCENTOS = "/root/GitHub/mlh-fellowship-project/app/static/data.json"
+pathWINDOWS = "static/data.json"
+data = open(pathWINDOWS)
 data = json.load(data)
 
 # MySQL db variable using peewee and environment variables
