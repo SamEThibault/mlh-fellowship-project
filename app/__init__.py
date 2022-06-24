@@ -105,10 +105,10 @@ def get_time_line_post():
 # delete a document by name
 @app.route("/api/timeline_post", methods=["DELETE"])
 def delete_time_line_post():
-    nameToDelete = request.form["name"]
-    qry = TimelinePost.delete().where(TimelinePost.name == nameToDelete)
+    idToDelete = request.form["id"]
+    qry = TimelinePost.delete().where(TimelinePost.id == idToDelete)
     qry.execute()
-    return "deleted: " + nameToDelete
+    return "deleted: " + idToDelete
 
 
 # this mapping deletes all documents from the database (used for testing)
