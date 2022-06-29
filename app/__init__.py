@@ -13,7 +13,7 @@ app = Flask(__name__)
 pathCENTOS = "/root/GitHub/mlh-fellowship-project/app/static/data.json"
 pathWINDOWS = "static/data.json"
 
-data = open(pathCENTOS)
+data = open(pathWINDOWS)
 data = json.load(data)
 
 # MySQL db variable using peewee and environment variables
