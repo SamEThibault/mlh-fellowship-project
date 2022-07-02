@@ -5,6 +5,7 @@ import json
 from peewee import *
 import datetime
 from playhouse.shortcuts import model_to_dict
+import werkzeug
 
 load_dotenv()
 app = Flask(__name__)
@@ -18,7 +19,6 @@ portfolio_dir = os.path.dirname(os.path.realpath(__file__))
 pathCENTOS = os.path.join(portfolio_dir, "static/data.json")
 pathWINDOWS = "static/data.json"
 #pathCENTOS = "/root/GitHub/mlh-fellowship-project/app/static/data.json"
-
 #print(portfolio_dir, pathCENTOS)
 
 data = open(pathCENTOS)
@@ -98,9 +98,17 @@ def post_time_line_post():
     print(email)
     content = request.form["content"]
     print(content)
-    timeline_post = TimelinePost.create(name=name, email=email, content=content)
-
-    return model_to_dict(timeline_post)
+    
+    if content == "":
+            return "Invalid content", 400
+    elif "@" not in email:
+            return "Invalid email", 400
+    elif name == "":
+        return "Invalid name", 400
+    else:
+            
+        timeline_post = TimelinePost.create(name=name, email=email, content=content)
+        return model_to_dict(timeline_post)
 
 
 # get all documents
@@ -129,3 +137,16 @@ def delete_all():
     qry = TimelinePost.delete()
     qry.execute()
     return "deleted all rows"
+
+#handles bad requests
+@app.errorhandler(werkzeug.exceptions.BadRequest)
+def handle_bad_request(e):
+    req = request
+    if 'name' not in req.form:
+        return "Invalid name", 400
+    elif 'email' not in req.form:
+        return "Invalid email", 400
+    elif 'content' not in req.form:
+        return "Invalid content", 400
+    else:
+        return "Invalid format, try again"
