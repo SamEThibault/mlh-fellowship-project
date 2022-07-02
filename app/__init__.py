@@ -5,27 +5,39 @@ import json
 from peewee import *
 import datetime
 from playhouse.shortcuts import model_to_dict
+import werkzeug
 
 load_dotenv()
 app = Flask(__name__)
 
 # Change this open path depending on localhost OS folder structure/location
-pathCENTOS = "/root/GitHub/mlh-fellowship-project/app/static/data.json"
+
+# Tyler - I added these os paths to get them to work on my machine (or any other user's machine), if 
+# they don't work for whatever reason, just delete them if you like and keep the one you had already
+
+portfolio_dir = os.path.dirname(os.path.realpath(__file__))
+pathCENTOS = os.path.join(portfolio_dir, "static/data.json")
 pathWINDOWS = "static/data.json"
+#pathCENTOS = "/root/GitHub/mlh-fellowship-project/app/static/data.json"
+#print(portfolio_dir, pathCENTOS)
 
 data = open(pathCENTOS)
 data = json.load(data)
 
 # MySQL db variable using peewee and environment variables
-mydb = MySQLDatabase(
-    os.getenv("MYSQL_DATABASE"),
-    user=os.getenv("MYSQL_USER"),
-    password=os.getenv("MYSQL_PASSWORD"),
-    host=os.getenv("MYSQL_HOST"),
-    port=3306,
-)
+if os.getenv("TESTING") == "true":
+    print("Running in test mode")
+    mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
+else:
+    mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        host=os.getenv("MYSQL_HOST"),
+        port=3306,
+    )
 
 # peewee model for the timeline posts
+
 class TimelinePost(Model):
     name = CharField()
     email = CharField()
@@ -86,9 +98,17 @@ def post_time_line_post():
     print(email)
     content = request.form["content"]
     print(content)
-    timeline_post = TimelinePost.create(name=name, email=email, content=content)
-
-    return model_to_dict(timeline_post)
+    
+    if content == "":
+            return "Invalid content", 400
+    elif "@" not in email:
+            return "Invalid email", 400
+    elif name == "":
+        return "Invalid name", 400
+    else:
+            
+        timeline_post = TimelinePost.create(name=name, email=email, content=content)
+        return model_to_dict(timeline_post)
 
 
 # get all documents
@@ -117,3 +137,16 @@ def delete_all():
     qry = TimelinePost.delete()
     qry.execute()
     return "deleted all rows"
+
+#handles bad requests
+@app.errorhandler(werkzeug.exceptions.BadRequest)
+def handle_bad_request(e):
+    req = request
+    if 'name' not in req.form:
+        return "Invalid name", 400
+    elif 'email' not in req.form:
+        return "Invalid email", 400
+    elif 'content' not in req.form:
+        return "Invalid content", 400
+    else:
+        return "Invalid format, try again"
