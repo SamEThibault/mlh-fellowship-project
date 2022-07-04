@@ -17,7 +17,8 @@
     <div class="card">
         <div class="row g-0">
             <div class="col-md-4">
-                <img class="rounded-start card-img-top-sam" src="../static/img/sam/samSelfie.jpg" alt="sam selfie" style="max-height: 600px;">
+                <img class="rounded-start card-img-top-sam" src="../static/img/sam/samSelfie.jpg" alt="sam selfie"
+                    style="max-height: 600px;">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -27,40 +28,14 @@
                     <p class="card-text">{{data.sam.education}}</p>
                     <b class="card-text">Hobbies</b>
                     <p class="card-text">I enjoy {{data.sam.hobbies}}</p>
-
-                    <div class="container w-50">
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-offset-2 car-container">
-                                <a><img src="../static/img/newCarIcon.png" alt="cars" class="img-fluid img-hobby1"></a>
-                            </div>
-                            <div class="col-sm-6 comp-container">
-                                <a><img src="../static/img/desktop.jpg" alt="computer" class="img-fluid img-hobby2"></a>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
-
-
-                <b class="card-text">Contact</b>
-                <br>
-                <a href={{ data.sam.social[0].val }}>
-                    <div class="fa fa-linkedin-square fa-3x"></div>
-                </a>
-                <a href={{ data.sam.social[1].val }}>
-                    <div class="fa fa-github fa-3x"></div>
-                </a>
-                <a href="mailto:{{ data.sam.social[2].val }}">
-                    <div class="fa fa-envelope fa-3x"></div>
-                </a>
-
-                <br>
-
-                <a href="{{ url_for('experience') }}" class="btn btn-lg btn-dark btn-outline-light">
-                    See More! </a>
             </div>
+
+            <a href="{{ url_for('experience') }}" class="btn btn-lg btn-dark btn-outline-light">
+                See More! </a>
         </div>
     </div>
+</div>
 </div>
 
 
