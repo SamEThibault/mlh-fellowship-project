@@ -2,7 +2,6 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/experience.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="{{ url_for('static', filename='scripts/experience.js') }}" defer></script>
 {% endblock %}
 
@@ -12,7 +11,7 @@
 <div class="background">
     <div class="mask">
 
-        <h1 style="font-size:4rem;">Experience</h1>
+        <h1 id="experience" style="font-size:4rem;">Experience</h1>
 
         <div class="main">
             <div class="left">
@@ -195,17 +194,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button> -->
                     </div>
                 </div>
 
@@ -213,10 +201,10 @@
                     <h3>Want to see more?</h3>
 
                     <a href={{ data.sam.social[0].val }}>
-                        <i class="fa fa-3x fa-linkedin-square"></i>
+                        <i class="fa fa-3x fa-linkedin-square icon-ex"></i>
                     </a>
                     <a href={{ data.sam.social[1].val }}>
-                        <i class="fa fa-3x fa-github"></i>
+                        <i class="fa fa-3x fa-github icon-ex"></i>
                     </a>
                 </div>
             </div>

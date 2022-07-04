@@ -60,6 +60,20 @@
                 "val": "sam5thibault@gmail.com"
             }
         ],
+        "current": [
+            {
+                "val": "I'm part of the Summer 2022 MLH Fellowship and have joined the Production Engineering track."
+            },
+            {
+                "val": "I'm working on automating deployment processes using Bash/Python scripting and Linux fundamentals. "
+            },
+            {
+                "val": "I'm currently working on my Flask, Spring, SQL and NoSQL skills with MySQL, Firestore, and MongoDB!"
+            },
+            {
+                "val": "I'm learning Object Oriented Java to work on Spring web apps and command line tools."
+            }
+        ],
         "projects": [
             {
                 "name": "Hackville 2022 - TimeSavior",

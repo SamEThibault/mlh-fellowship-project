@@ -22,13 +22,22 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">Introduction</h5>
+                    <h3 class="card-title">Introduction</h3>
                     <p class="card-text">{{data.sam.about}}</p>
-                    <b class="card-text">Education</b>
+                    <h3 class="card-title">Education</h3>
                     <p class="card-text">{{data.sam.education}}</p>
-                    <b class="card-text">Hobbies</b>
+                    <h3 class="card-title">Hobbies</h3>
                     <p class="card-text">I enjoy {{data.sam.hobbies}}</p>
+
+                    <h3 class="card-title">What am I up to?</h3>
+                    <ul>
+                        <li>{{ data.sam.current[0].val }}</li>
+                        <li>{{ data.sam.current[1].val }}</li>
+                        <li>{{ data.sam.current[2].val }}</li>
+                        <li>{{ data.sam.current[3].val }}</li>
+                    </ul>
                 </div>
+
             </div>
 
             <a href="{{ url_for('experience') }}" class="btn btn-lg btn-dark btn-outline-light">
@@ -36,12 +45,6 @@
         </div>
     </div>
 </div>
-</div>
 
-
-
-
-
-</div>
 
 {% endblock %}
