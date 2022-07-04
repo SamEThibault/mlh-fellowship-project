@@ -1,5 +1,6 @@
 // since getAll() must execute on load to populate the table:
-window.onload = function () {
+doc = document.addEventListener('')
+ = function () {
     getAll()
 }
 

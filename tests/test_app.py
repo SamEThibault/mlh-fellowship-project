@@ -1,6 +1,9 @@
-import unittest
-import os
+# Integration test for major frontend pages and main API endpoints
 
+import unittest
+import os, time
+
+# set env variable to ensure db set up is in-memory (in init)
 os.environ["TESTING"] = "true"
 
 from app import app
@@ -11,6 +14,7 @@ class AppTestCase(unittest.TestCase):
     def setUp(self):
         self.client = app.test_client()
 
+    # home frontend test: ensure general elements are properly fetched
     def test_home(self):
         response = self.client.get("/")
         assert response.status_code == 200
@@ -19,7 +23,10 @@ class AppTestCase(unittest.TestCase):
         assert '<h1>&nbsp<span class="txt-type blink" data-wait="1500"' in html
         assert '<h1 class="hidden">Welcome to&nbspmy portfolio!</h1>' in html
 
+    # Timeline API/frontend test
     def test_timeline(self):
+
+        # GET posts, should return empty list of timeline objs
         response = self.client.get("/api/timeline_post")
         assert response.status_code == 200
         assert response.is_json
@@ -27,6 +34,7 @@ class AppTestCase(unittest.TestCase):
         assert "timeline_posts" in json
         assert len(json["timeline_posts"]) == 0
 
+        # POST 2 queries using the db test, then GET and ensure response contains 2 timeline objs
         test_db.TestTimelinePost.test_timeline_post(self)
         response = self.client.get("/api/timeline_post")
         assert response.status_code == 200
@@ -35,14 +43,9 @@ class AppTestCase(unittest.TestCase):
         assert "timeline_posts" in json
         assert len(json["timeline_posts"]) == 2
 
-        response = self.client.get("/timeline")
-        assert response.status_code == 200
-        html = response.get_data(as_text=True)
-        assert 'class="form-label"' in html
-        assert '<script src="../static/scripts/callAPI.js"></script>' in html
-
+    # send bad requests and test responses
     def test_malformed_timeline_post(self):
-        # POST request missing name
+        # POST request with missing name
         response = self.client.post(
             "/api/timeline_post",
             data={"email": "john@example.com", "content": "Hello world, I'm John!"},
@@ -51,7 +54,7 @@ class AppTestCase(unittest.TestCase):
         html = response.get_data(as_text=True)
         assert "Invalid name" in html
 
-        #POST request with empty name
+        # POST request with empty name
         response = self.client.post(
             "/api/timeline_post",
             data={
@@ -95,7 +98,7 @@ class AppTestCase(unittest.TestCase):
         html = response.get_data(as_text=True)
         assert "Invalid email" in html
 
-        #POST request with missing email
+        # POST request with missing email
         response = self.client.post(
             "/api/timeline_post",
             data={
@@ -107,7 +110,7 @@ class AppTestCase(unittest.TestCase):
         html = response.get_data(as_text=True)
         assert "Invalid email" in html
 
-        #POST request with empty email
+        # POST request with empty email
         response = self.client.post(
             "/api/timeline_post",
             data={
