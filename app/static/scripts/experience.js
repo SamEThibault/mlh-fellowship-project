@@ -1,6 +1,6 @@
 profBtn = document.getElementById('prof-button');
 profBtn.addEventListener('click', () => {
-    document.getElementById('professional').scrollIntoView({
+    document.getElementById('experience').scrollIntoView({
         'behavior': 'smooth',
         'block': 'center',
         'inline': 'center'
