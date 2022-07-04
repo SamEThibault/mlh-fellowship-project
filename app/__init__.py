@@ -10,25 +10,19 @@ import werkzeug
 load_dotenv()
 app = Flask(__name__)
 
-# Change this open path depending on localhost OS folder structure/location
-
-# Tyler - I added these os paths to get them to work on my machine (or any other user's machine), if 
-# they don't work for whatever reason, just delete them if you like and keep the one you had already
-
+# store portfolio directory, then get json data path
 portfolio_dir = os.path.dirname(os.path.realpath(__file__))
-pathCENTOS = os.path.join(portfolio_dir, "static/data.json")
-pathWINDOWS = "static/data.json"
-#pathCENTOS = "/root/GitHub/mlh-fellowship-project/app/static/data.json"
-#print(portfolio_dir, pathCENTOS)
+dataPath = os.path.join(portfolio_dir, "static/data.json")
 
-data = open(pathCENTOS)
+data = open(dataPath)
 data = json.load(data)
 
-# MySQL db variable using peewee and environment variables
+# if env variable TESTING is set to true, instantiate a in-memory db for testing purposes only
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
     mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
 else:
+    # for production, connect to real db specified by .env variables
     mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
         user=os.getenv("MYSQL_USER"),
         password=os.getenv("MYSQL_PASSWORD"),
@@ -87,7 +81,7 @@ def timeline():
     )
 
 
-##### TIMELINE API ROUTES #####
+##### API ROUTES #####
 # add a document by specifying field values in the request body
 @app.route("/api/timeline_post", methods=["POST"])
 def post_time_line_post():
@@ -99,6 +93,7 @@ def post_time_line_post():
     content = request.form["content"]
     print(content)
     
+    # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly 
     if content == "":
             return "Invalid content", 400
     elif "@" not in email:
@@ -138,7 +133,7 @@ def delete_all():
     qry.execute()
     return "deleted all rows"
 
-#handles bad requests
+# for erronous request bodies, return the appropriate message depending on missing fields
 @app.errorhandler(werkzeug.exceptions.BadRequest)
 def handle_bad_request(e):
     req = request
