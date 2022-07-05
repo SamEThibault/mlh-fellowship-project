@@ -4,9 +4,9 @@ echo "fetching most recent repository changes..."
 cd /root/GitHub/mlh-fellowship-project/app
 git fetch && git reset origin/main --hard
 
-echo "activating virtual environment..."
-source /root/GitHub/mlh-fellowship-project/python3-virtualenv/bin/activate
-pip3 install -r /root/GitHub/mlh-fellowship-project/requirements.txt
+echo "Spinning down existing containers to conserve memory..."
+docker compose -f docker-compose.prod.yml down
 
-systemctl restart myportfolio
-systemctl status myportfolio
+echo "Re-building and spinning up application..."
+docker compose -f docker-compose.prod.yml up -d --build
+
