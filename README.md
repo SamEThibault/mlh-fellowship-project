@@ -14,6 +14,13 @@ A portfolio website with a modular design built as a template for others to add 
 - JavaScript
 - Bootstrap V5.0
 
+## Requirements
+- Git
+- Python => 3.0
+- Venv
+- Docker
+- MySQL Server
+
 ## Installation (Development)
 The application is currently deployed on a CentOS server [right here!](http://samthibault.live) The Bash redeploy script is included for the user's convenience to re-base and deploy the most recent version of the application with a single command.
 
