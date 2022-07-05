@@ -96,7 +96,7 @@ function getAll() {
             var text = JSON.parse(results).timeline_posts
             console.log(text)
 
-
+            // generate bootstrap cards for each of the elements in the array
             let content = '';
             for (var obj of text) {
                 content += `
@@ -110,39 +110,10 @@ function getAll() {
                             <p class="card-text"><small class="text-muted">${obj.id}</small></p>
                         </div>
                     </div>
-              
                 `
             }
 
             document.querySelector('#generate-items').innerHTML = content;
-
-            // to populate frontend table, count columns
-            var col = []
-            for (var i = 0; i < text.length; i++) {
-                for (var key in text[i]) {
-                    if (col.indexOf(key) === -1) {
-                        col.push(key)
-                    }
-                }
-            }
-
-            // find table to fill
-            var table = document.getElementById("table")
-
-            var tr = table.insertRow(-1)
-
-            // insert a cell for each document field
-            for (var i = 0; i < text.length; i++) {
-
-                tr = table.insertRow(-1);
-
-                for (var j = col.length - 1; j >= 0; j--) {
-                    var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = text[i][col[j]];
-                }
-            }
-
-
         })
         .catch(error => console.log('error', error))
 }
