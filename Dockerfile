@@ -8,6 +8,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 RUN pip install peewee PyMySQL
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0", "-p 80"]
 
-EXPOSE 5000
+EXPOSE 80
