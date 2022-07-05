@@ -1,5 +1,3 @@
-
-
 .main {
     background-color: #282c44;
     color: white;
@@ -21,4 +19,9 @@
 .btn {
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+#generate-items{
+    color: black;
+    text-align: left !important;
 }

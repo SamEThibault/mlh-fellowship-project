@@ -96,6 +96,26 @@ function getAll() {
             var text = JSON.parse(results).timeline_posts
             console.log(text)
 
+
+            let content = '';
+            for (var obj of text) {
+                content += `
+                
+                    <div class="card mb-3 mx-auto w-50" >
+                        <div class="card-header"><h4>${obj.name}</h4></div>
+                        <div class="card-body">
+                            <h5 class="card-text"> Date: ${obj.created_at}</h5>
+                            <h5 class="card-text"> Email: ${obj.email}</h5>
+                            <p class="card-text">${obj.content}</p>
+                            <p class="card-text"><small class="text-muted">${obj.id}</small></p>
+                        </div>
+                    </div>
+              
+                `
+            }
+
+            document.querySelector('#generate-items').innerHTML = content;
+
             // to populate frontend table, count columns
             var col = []
             for (var i = 0; i < text.length; i++) {
