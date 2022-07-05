@@ -27,11 +27,12 @@ else:
         user=os.getenv("MYSQL_USER"),
         password=os.getenv("MYSQL_PASSWORD"),
         host=os.getenv("MYSQL_HOST"),
-        port=3306,
+        port=3306
     )
 
-# peewee model for the timeline posts
+print(mydb)
 
+# peewee model for the timeline posts
 class TimelinePost(Model):
     name = CharField()
     email = CharField()
