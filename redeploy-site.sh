@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "fetching most recent repository changes..."
-cd /root/GitHub/mlh-fellowship-project/app
+cd /root/GitHub/mlh-fellowship-project
 git fetch && git reset origin/main --hard
 
 echo "Spinning down existing containers to conserve memory..."
