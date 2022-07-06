@@ -31,8 +31,7 @@ removeForm.addEventListener('submit', event => {
         .then(result => {
             console.log(result);
             display = result
-            if (result == "error, invalid ID. Try again")
-            {
+            if (result == "error, invalid ID. Try again") {
                 err = true;
                 document.querySelector("#del-msg").innerHTML = result
             }
@@ -106,24 +105,37 @@ function getAll() {
     // fetch all documents from db
     fetch("/api/timeline_post", requestOptionsG)
         .then(response => response.text())
-        .then(results => {
+        .then(async results => {
 
             // at this point, response is now a JSON object
             var text = JSON.parse(results).timeline_posts
             console.log(text)
 
+
             // generate bootstrap cards for each of the elements in the array
             let content = '';
             for (var obj of text) {
+
+                // get the avatar of the user's email
+                let avatar = await getAvatar(obj.email)
+
                 content += `
                 
                     <div class="card mb-3 mx-auto w-50" >
-                        <div class="card-header"><h4>${obj.name}</h4></div>
+                        <div class="row g-0">
+                        <div class="col-md-11">
                         <div class="card-body">
+                            <h4 class="card-title">${obj.name}</h4> 
                             <h5 class="card-text"> Date: ${obj.created_at}</h5>
                             <h5 class="card-text"> Email: ${obj.email}</h5>
                             <p class="card-text">${obj.content}</p>
                             <p class="card-text"><small class="text-muted">${obj.id}</small></p>
+                        </div>
+                        </div>
+                            <div class="col-md-1"> 
+                                <img class="img-fluid avatar" src="${avatar}" alt="avatar">
+                            </div>
+        
                         </div>
                     </div>
                 `
@@ -132,4 +144,30 @@ function getAll() {
             document.querySelector('#generate-items').innerHTML = content;
         })
         .catch(error => console.log('error', error))
+}
+
+// reach the gravatar endpoint to get the user's profile picture
+async function getAvatar(email) {
+    // specify data format
+    var myHeadersG = new Headers();
+    myHeadersG.append("Content-Type", "application/x-www-form-urlencoded");
+
+    // add search parameters based on form's inputs
+    var urlencodedG = new URLSearchParams();
+    urlencodedG.append("email", email);
+
+    // populate the request details
+    var requestOptionsG = {
+        method: 'POST',
+        headers: myHeadersG,
+        body: urlencodedG,
+        redirect: 'follow',
+        mode: 'no-cors'
+    };
+
+    let res = fetch("/api/get_gravatar", requestOptionsG)
+    .then(response => response.text())
+    .catch(error => console.log(error))
+
+    return res
 }

@@ -6,6 +6,7 @@ from peewee import *
 import datetime
 from playhouse.shortcuts import model_to_dict
 import werkzeug
+import libgravatar
 
 load_dotenv()
 app = Flask(__name__)
@@ -136,6 +137,15 @@ def delete_all():
     qry = TimelinePost.delete()
     qry.execute()
     return "deleted all rows"
+
+
+# receive email in body, and return Gravatage img link
+@app.route("/api/get_gravatar", methods=["POST"])
+def get_gravatar():
+    email = request.form["email"]
+    g = libgravatar.Gravatar(email).get_image(default="mm")
+    print(g)
+    return g
 
 
 # for erronous request bodies, return the appropriate message depending on missing fields
