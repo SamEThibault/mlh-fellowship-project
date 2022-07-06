@@ -26,7 +26,6 @@ removeForm.addEventListener('submit', event => {
     };
 
     var err = false;
-    var display = "";
     fetch("/api/timeline_post", requestOptions)
         .then(response => response.text())
         .then(result => {
