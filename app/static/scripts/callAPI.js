@@ -68,6 +68,7 @@ addForm.addEventListener('submit', event => {
             console.log(isJson)
             if (!isJson)
             {
+                console.log("we made it")
                 window.location.href ="error429.html"
             }
         })
