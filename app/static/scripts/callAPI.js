@@ -6,9 +6,10 @@ window.onload = function () {
 // listens for the form to submit (DELETE)
 const removeForm = document.querySelector('#rmForm')
 removeForm.addEventListener('submit', event => {
+
+    // prevent the default browser actions to occur on submit
     event.preventDefault()
 
-    // DELETE
     // specify data format
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -38,13 +39,12 @@ const addForm = document.querySelector('#addForm')
 addForm.addEventListener('submit', event => {
     event.preventDefault() // ensure no browser-specific action on form submit
 
-    // POST
     // specify data format
     var myHeadersP = new Headers();
     myHeadersP.append("Content-Type", "application/x-www-form-urlencoded");
-    myHeadersP.append("Access-Control-Allow-Origin", "*")
-    myHeadersP.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
-    myHeadersP.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
+    // myHeadersP.append("Access-Control-Allow-Origin", "*")
+    // myHeadersP.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
+    // myHeadersP.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
 
     // add search parameters based on form's inputs
     var urlencodedP = new URLSearchParams();
@@ -88,14 +88,14 @@ addForm.addEventListener('submit', event => {
 // get all documents and populate frontend table
 function getAll() {
 
-    var myHeadersG = new Headers();
-    myHeadersG.append("Access-Control-Allow-Origin", "*")
-    myHeadersG.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
-    myHeadersG.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
+    // var myHeadersG = new Headers();
+    // myHeadersG.append("Access-Control-Allow-Origin", "*")
+    // myHeadersG.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
+    // myHeadersG.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
 
     var requestOptionsG = {
         method: 'GET',
-        headers: myHeadersG,
+        // headers: myHeadersG,
         redirect: 'follow',
         mode: 'no-cors'
     };

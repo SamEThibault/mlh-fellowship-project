@@ -1,3 +1,5 @@
+// this script takes care of the typewriter animation on the home page "/"
+
 const TypeWriter = function(txtElement, words, wait = 1500) {
     this.txtElement = txtElement;
     this.words = words

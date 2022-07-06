@@ -1,3 +1,6 @@
+// this script generates the animation for the experience scroller arrows
+
+// each arrow smooth-scrolls to its designated section div
 profBtn = document.getElementById('prof-button');
 profBtn.addEventListener('click', () => {
     document.getElementById('experience').scrollIntoView({
