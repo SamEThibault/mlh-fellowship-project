@@ -31,8 +31,7 @@ removeForm.addEventListener('submit', event => {
         .then(result => {
             console.log(result);
             display = result
-            if (result == "error, invalid ID. Try again")
-            {
+            if (result == "error, invalid ID. Try again") {
                 err = true;
                 document.querySelector("#del-msg").innerHTML = result
             }
@@ -106,24 +105,34 @@ function getAll() {
     // fetch all documents from db
     fetch("/api/timeline_post", requestOptionsG)
         .then(response => response.text())
-        .then(results => {
+        .then(async results => {
 
             // at this point, response is now a JSON object
             var text = JSON.parse(results).timeline_posts
             console.log(text)
 
+
             // generate bootstrap cards for each of the elements in the array
             let content = '';
             for (var obj of text) {
+
                 content += `
                 
                     <div class="card mb-3 mx-auto w-50" >
-                        <div class="card-header"><h4>${obj.name}</h4></div>
+                        <div class="row g-0">
+                        <div class="col-md-11">
                         <div class="card-body">
+                            <h4 class="card-title">${obj.name}</h4> 
                             <h5 class="card-text"> Date: ${obj.created_at}</h5>
                             <h5 class="card-text"> Email: ${obj.email}</h5>
                             <p class="card-text">${obj.content}</p>
                             <p class="card-text"><small class="text-muted">${obj.id}</small></p>
+                        </div>
+                        </div>
+                            <div class="col-md-1"> 
+                                <img class="img-fluid avatar" src="${obj.avatar}" alt="avatar">
+                            </div>
+        
                         </div>
                     </div>
                 `
@@ -133,3 +142,4 @@ function getAll() {
         })
         .catch(error => console.log('error', error))
 }
+

@@ -6,6 +6,7 @@ from peewee import *
 import datetime
 from playhouse.shortcuts import model_to_dict
 import werkzeug
+import libgravatar
 
 load_dotenv()
 app = Flask(__name__)
@@ -39,6 +40,7 @@ class TimelinePost(Model):
     email = CharField()
     content = TextField()
     created_at = DateTimeField(default=datetime.datetime.now)
+    avatar = CharField()
 
     class Meta:
         database = mydb
@@ -93,6 +95,9 @@ def post_time_line_post():
     print(email)
     content = request.form["content"]
     print(content)
+    # use libgravatar to find profile image link for the submitted email, default to basic avatar
+    avatar = libgravatar.Gravatar(email).get_image(default="mm")
+    print(avatar)
 
     # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly
     if content == "":
@@ -102,7 +107,7 @@ def post_time_line_post():
     elif name == "":
         return "Invalid name, please try again", 400
     else:
-        timeline_post = TimelinePost.create(name=name, email=email, content=content)
+        timeline_post = TimelinePost.create(name=name, email=email, content=content, avatar=avatar)
         return model_to_dict(timeline_post)
 
 
