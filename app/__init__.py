@@ -20,14 +20,15 @@ data = json.load(data)
 # if env variable TESTING is set to true, instantiate a in-memory db for testing purposes only
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
-    mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
+    mydb = SqliteDatabase("file:memory?mode=memory&cache=shared", uri=True)
 else:
     # for production, connect to real db specified by .env variables
-    mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
+    mydb = MySQLDatabase(
+        os.getenv("MYSQL_DATABASE"),
         user=os.getenv("MYSQL_USER"),
         password=os.getenv("MYSQL_PASSWORD"),
         host=os.getenv("MYSQL_HOST"),
-        port=3306
+        port=3306,
     )
 
 print(mydb)
@@ -74,12 +75,12 @@ def experience():
     )
 
 
-# on page load, GET all timeline posts and send through data Jinja variable to display
 @app.route("/timeline")
 def timeline():
     return render_template(
         "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL")
     )
+
 
 @app.route("/error429")
 def error429():
@@ -99,18 +100,19 @@ def post_time_line_post():
     print(email)
     content = request.form["content"]
     print(content)
-    
-    # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly 
+
+    # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly
     if content == "":
-            return "Invalid content", 400
+        return "Invalid content", 400
     elif "@" not in email:
-            return "Invalid email", 400
+        return "Invalid email", 400
     elif name == "":
         return "Invalid name", 400
     else:
-            
+
         timeline_post = TimelinePost.create(name=name, email=email, content=content)
         return model_to_dict(timeline_post)
+
 
 # get all documents
 @app.route("/api/timeline_post", methods=["GET"])
@@ -139,15 +141,16 @@ def delete_all():
     qry.execute()
     return "deleted all rows"
 
+
 # for erronous request bodies, return the appropriate message depending on missing fields
 @app.errorhandler(werkzeug.exceptions.BadRequest)
 def handle_bad_request(e):
     req = request
-    if 'name' not in req.form:
+    if "name" not in req.form:
         return "Invalid name", 400
-    elif 'email' not in req.form:
+    elif "email" not in req.form:
         return "Invalid email", 400
-    elif 'content' not in req.form:
+    elif "content" not in req.form:
         return "Invalid content", 400
     else:
         return "Invalid format, try again"
