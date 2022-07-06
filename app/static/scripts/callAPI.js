@@ -61,19 +61,26 @@ addForm.addEventListener('submit', event => {
         mode: 'no-cors'
     };
 
+    var err = false;
     // then request, log the results or error msg, and call the getAll request
     fetch("/api/timeline_post", requestOptionsP)
         .then(response => response.text())
         .then(text => {
+
+            // check if the response is in JSON format
             try {
                 JSON.parse(text);
-            } catch(e) {
-                window.location.href = '/error429'
+            } catch (e) {
+                // if it's not, the server threw a 429, display the proper page
+                window.location.href = '/error429';
+                err = true;
             }
         })
         .catch(error => console.log('error', error))
         .finally(function () {
-            window.location.reload()
+            // if the response was JSON, reload to display new post
+            if (!err)
+                window.location.reload()
         })
 })
 
