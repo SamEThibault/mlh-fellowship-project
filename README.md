@@ -13,6 +13,9 @@ A portfolio website with a modular design built as a template for others to add 
 - CSS
 - JavaScript
 - Bootstrap V5.0
+- NGINX
+- MariaDB / MySQL
+- Docker
 
 ## Requirements
 - Git
