@@ -116,9 +116,6 @@ function getAll() {
             let content = '';
             for (var obj of text) {
 
-                // get the avatar of the user's email
-                let avatar = await getAvatar(obj.email)
-
                 content += `
                 
                     <div class="card mb-3 mx-auto w-50" >
@@ -133,7 +130,7 @@ function getAll() {
                         </div>
                         </div>
                             <div class="col-md-1"> 
-                                <img class="img-fluid avatar" src="${avatar}" alt="avatar">
+                                <img class="img-fluid avatar" src="${obj.avatar}" alt="avatar">
                             </div>
         
                         </div>
@@ -146,28 +143,3 @@ function getAll() {
         .catch(error => console.log('error', error))
 }
 
-// reach the gravatar endpoint to get the user's profile picture
-async function getAvatar(email) {
-    // specify data format
-    var myHeadersG = new Headers();
-    myHeadersG.append("Content-Type", "application/x-www-form-urlencoded");
-
-    // add search parameters based on form's inputs
-    var urlencodedG = new URLSearchParams();
-    urlencodedG.append("email", email);
-
-    // populate the request details
-    var requestOptionsG = {
-        method: 'POST',
-        headers: myHeadersG,
-        body: urlencodedG,
-        redirect: 'follow',
-        mode: 'no-cors'
-    };
-
-    let res = fetch("/api/get_gravatar", requestOptionsG)
-    .then(response => response.text())
-    .catch(error => console.log(error))
-
-    return res
-}
