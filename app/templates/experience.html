@@ -16,6 +16,7 @@
         <div class="main">
             <div class="left">
                 <ul>
+                    <!-- onClick: smooth-scrolls into designated div's view -->
                     <li id="prof-button"><img src="{{ url_for('static', filename='img/arrow-right.svg') }}"
                             alt="">Professional</li>
                     <li id="project-button"><img src="{{ url_for('static', filename='img/arrow-right.svg') }}"
@@ -24,10 +25,8 @@
             </div>
 
             <div class="center">
-
                 <div id="professional">
                     <div class="profile">
-
                         <div class="brief">
                             <h1>Professional</h1>
 
@@ -59,6 +58,7 @@
 
                 <div id="projects" style="margin-top:30px;margin-bottom:30px;">
 
+                    <!-- Bootstrap carousel displaying projects with Jinja-templated details -->
                     <div id="carousel" class="carousel carousel-fade carousel-dark" data-bs-ride="carousel"
                         data-bs-interval="10000">
                         <div class="carousel-indicators">

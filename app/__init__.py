@@ -53,14 +53,14 @@ mydb.create_tables([TimelinePost])
 @app.route("/")
 def index():
     return render_template(
-        "index.html", title="Sam Thibault - Portfolio", url=os.getenv("URL"), data=data
+        "index.html", title="Sam Thibault - Home", url=os.getenv("URL"), data=data
     )
 
 
 @app.route("/about")
 def about():
     return render_template(
-        "about.html", title="Sam Thibault - Portfolio", url=os.getenv("URL"), data=data
+        "about.html", title="Sam Thibault - About", url=os.getenv("URL"), data=data
     )
 
 
@@ -68,7 +68,7 @@ def about():
 def experience():
     return render_template(
         "experience.html",
-        title="Sam Thibault - Portfolio",
+        title="Sam Thibault - Experience",
         url=os.getenv("URL"),
         data=data,
     )
@@ -78,13 +78,13 @@ def experience():
 @app.route("/timeline")
 def timeline():
     return render_template(
-        "timeline.html", title="Sam Thibault - Portfolio", url=os.getenv("URL")
+        "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL")
     )
 
 @app.route("/error429")
 def error429():
     return render_template(
-        "error429.html", title="Sam Thibault - Portfolio", url=os.getenv("URL")
+        "error429.html", title="Sam Thibault - Error!", url=os.getenv("URL")
     )
 
 
