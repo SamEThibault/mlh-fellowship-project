@@ -70,8 +70,7 @@ addForm.addEventListener('submit', event => {
                 JSON.parse(text);
                 document.querySelector('#err-msg').innerHTML = 'This information will be added to the existing timeline below.'
             } catch (e) {
-                // if it's not, the server threw a 429, display the proper page
-                window.location.href = '/error429';
+                // if it's not, show error msg
                 document.querySelector('#err-msg').innerHTML = text
                 err = true;
             }
