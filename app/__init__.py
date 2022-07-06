@@ -125,7 +125,7 @@ def delete_time_line_post():
     result = qry.execute()
 
     if result == 0:
-        return "error, invalid ID. Try again"
+        return "error, invalid ID. Try again", 400
     else:
         return "deleted: " + idToDelete
 
