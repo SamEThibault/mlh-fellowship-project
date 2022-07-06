@@ -63,8 +63,13 @@ addForm.addEventListener('submit', event => {
 
     // then request, log the results or error msg, and call the getAll request
     fetch("/api/timeline_post", requestOptionsP)
-        .then(response => response.text())
-        .then(result => console.log(result))
+        .then(response => {
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            if (!isJson)
+            {
+                window.location.href = "/error429"
+            }
+        })
         .catch(error => console.log('error', error))
         .finally(function () {
             window.location.reload()

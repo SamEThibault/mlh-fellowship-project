@@ -81,6 +81,12 @@ def timeline():
         "timeline.html", title="Sam Thibault - Portfolio", url=os.getenv("URL")
     )
 
+@app.route("/error429")
+def error429():
+    return render_template(
+        "error429.html", title="Sam Thibault - Portfolio", url=os.getenv("URL")
+    )
+
 
 ##### API ROUTES #####
 # add a document by specifying field values in the request body
