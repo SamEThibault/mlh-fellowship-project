@@ -71,7 +71,7 @@ addForm.addEventListener('submit', event => {
             } catch (e) {
                 // if it's not, the server threw a 429, display the proper page
                 window.location.href = '/error429';
-                document.getElementById("title").innerHTML = text
+                document.querySelector('#title').innerHTML = text
                 err = true;
             }
         })
