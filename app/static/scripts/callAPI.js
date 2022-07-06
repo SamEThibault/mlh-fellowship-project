@@ -42,9 +42,6 @@ addForm.addEventListener('submit', event => {
     // specify data format
     var myHeadersP = new Headers();
     myHeadersP.append("Content-Type", "application/x-www-form-urlencoded");
-    // myHeadersP.append("Access-Control-Allow-Origin", "*")
-    // myHeadersP.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
-    // myHeadersP.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
 
     // add search parameters based on form's inputs
     var urlencodedP = new URLSearchParams();
@@ -69,10 +66,12 @@ addForm.addEventListener('submit', event => {
 
             // check if the response is in JSON format
             try {
+                console.log(text)
                 JSON.parse(text);
             } catch (e) {
                 // if it's not, the server threw a 429, display the proper page
                 window.location.href = '/error429';
+                document.getElementById("title").innerHTML = text
                 err = true;
             }
         })
@@ -88,14 +87,8 @@ addForm.addEventListener('submit', event => {
 // get all documents and populate frontend table
 function getAll() {
 
-    // var myHeadersG = new Headers();
-    // myHeadersG.append("Access-Control-Allow-Origin", "*")
-    // myHeadersG.append("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE, OPTIONS")
-    // myHeadersG.append("Access-Control-Allow-Headers", "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization")
-
     var requestOptionsG = {
         method: 'GET',
-        // headers: myHeadersG,
         redirect: 'follow',
         mode: 'no-cors'
     };
