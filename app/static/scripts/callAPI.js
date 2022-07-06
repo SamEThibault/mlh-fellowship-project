@@ -25,12 +25,24 @@ removeForm.addEventListener('submit', event => {
         redirect: 'follow'
     };
 
+    var err = false;
+    var display = "";
     fetch("/api/timeline_post", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result);
+            display = result
+            if (result == "error, invalid ID. Try again")
+            {
+                err = true;
+                document.querySelector("#del-msg").innerHTML = result
+            }
+        })
         .catch(error => console.log('error', error))
         .finally(function () {
-            window.location.reload()
+            // if no error occured, reload the page to display the updated db.
+            if (!err)
+                window.location.reload()
         })
 })
 
@@ -68,10 +80,9 @@ addForm.addEventListener('submit', event => {
             try {
                 console.log(text)
                 JSON.parse(text);
-                document.querySelector('#err-msg').innerHTML = 'This information will be added to the existing timeline below.'
             } catch (e) {
-                // if it's not, show error msg
-                document.querySelector('#err-msg').innerHTML = text
+                // if it's not, show error msg (if error msg is in HTML format, remove the element tags for plain text)
+                document.querySelector('#err-msg').innerHTML = text.replace(/<[^>]+>/g, '')
                 err = true;
             }
         })

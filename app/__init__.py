@@ -82,13 +82,6 @@ def timeline():
     )
 
 
-@app.route("/error429")
-def error429():
-    return render_template(
-        "error429.html", title="Sam Thibault - Error!", url=os.getenv("URL")
-    )
-
-
 ##### API ROUTES #####
 # add a document by specifying field values in the request body
 @app.route("/api/timeline_post", methods=["POST"])
@@ -103,13 +96,12 @@ def post_time_line_post():
 
     # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly
     if content == "":
-        return "Invalid content", 400
-    elif "@" not in email:
-        return "Invalid email", 400
+        return "Invalid content, please try again", 400
+    elif "@" not in email or "." not in email:
+        return "Invalid email, please try again", 400
     elif name == "":
-        return "Invalid name", 400
+        return "Invalid name, please try again", 400
     else:
-
         timeline_post = TimelinePost.create(name=name, email=email, content=content)
         return model_to_dict(timeline_post)
 
@@ -130,8 +122,12 @@ def get_time_line_post():
 def delete_time_line_post():
     idToDelete = request.form["id"]
     qry = TimelinePost.delete().where(TimelinePost.id == idToDelete)
-    qry.execute()
-    return "deleted: " + idToDelete
+    result = qry.execute()
+
+    if result == 0:
+        return "error, invalid ID. Try again"
+    else:
+        return "deleted: " + idToDelete
 
 
 # this mapping deletes all documents from the database (used for testing)
@@ -147,10 +143,10 @@ def delete_all():
 def handle_bad_request(e):
     req = request
     if "name" not in req.form:
-        return "Invalid name", 400
+        return "Invalid name, please try again", 400
     elif "email" not in req.form:
-        return "Invalid email", 400
+        return "Invalid email, please try again", 400
     elif "content" not in req.form:
-        return "Invalid content", 400
+        return "Invalid content, please try again", 400
     else:
-        return "Invalid format, try again"
+        return "Invalid format, please try again"
