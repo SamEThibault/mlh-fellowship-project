@@ -1,5 +1,4 @@
 # Integration test for major frontend pages and main API endpoints
-
 import unittest
 import os
 
@@ -19,7 +18,7 @@ class AppTestCase(unittest.TestCase):
         response = self.client.get("/")
         assert response.status_code == 200
         html = response.get_data(as_text=True)
-        assert "<title>Sam Thibault - Portfolio</title>" in html
+        assert "<h1 class=\"hidden\">Welcome to&nbspmy portfolio!</h1>" in html
         assert '<h1>&nbsp<span class="txt-type blink" data-wait="1500"' in html
         assert '<h1 class="hidden">Welcome to&nbspmy portfolio!</h1>' in html
 
