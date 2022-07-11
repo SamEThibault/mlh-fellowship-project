@@ -1,7 +1,8 @@
 # Integration test for major frontend pages and main API endpoints
 
 import unittest
-import os, time
+import os
+import libgravatar
 
 # set env variable to ensure db set up is in-memory (in init)
 os.environ["TESTING"] = "true"
