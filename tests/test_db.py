@@ -2,8 +2,7 @@
 
 import unittest
 from peewee import *
-from app import TimelinePost
-import libgravatar
+from app import TimelinePost, libgravatar
 from playhouse.shortcuts import model_to_dict
 
 
