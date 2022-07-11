@@ -18,9 +18,12 @@ dataPath = os.path.join(portfolio_dir, "static/data.json")
 data = open(dataPath)
 data = json.load(data)
 
+testing = False
+
 # if env variable TESTING is set to true, instantiate a in-memory db for testing purposes only
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
+    testing = True
     mydb = SqliteDatabase("file:memory?mode=memory&cache=shared", uri=True)
 else:
     # for production, connect to real db specified by .env variables
@@ -40,7 +43,7 @@ class TimelinePost(Model):
     email = CharField()
     content = TextField()
     created_at = DateTimeField(default=datetime.datetime.now)
-    avatar = CharField()
+    avatar = CharField(default="Testing")
 
     class Meta:
         database = mydb
@@ -96,8 +99,8 @@ def post_time_line_post():
     content = request.form["content"]
     print(content)
     # use libgravatar to find profile image link for the submitted email, default to basic avatar
-    avatar = libgravatar.Gravatar(email).get_image(default="mm")
-    print(avatar)
+    if (testing == False):
+        avatar = libgravatar.Gravatar(email).get_image(default="mm")
 
     # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly
     if content == "":
@@ -106,8 +109,11 @@ def post_time_line_post():
         return "Invalid email, please try again", 400
     elif name == "":
         return "Invalid name, please try again", 400
-    else:
+    elif testing == False:
         timeline_post = TimelinePost.create(name=name, email=email, content=content, avatar=avatar)
+        return model_to_dict(timeline_post)
+    else:
+        timeline_post = TimelinePost.create(name=name, email=email, content=content)
         return model_to_dict(timeline_post)
 
 
