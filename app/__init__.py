@@ -83,6 +83,18 @@ def timeline():
         "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL")
     )
 
+@app.route("/signin")
+def signin():
+    return render_template(
+        "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
+    )
+
+@app.route("/signup")
+def signup():
+    return render_template(
+        "signup.html", title="Sam Thibault - Sign up", url=os.getenv("URL")
+    )
+
 
 ##### API ROUTES #####
 # add a document by specifying field values in the request body

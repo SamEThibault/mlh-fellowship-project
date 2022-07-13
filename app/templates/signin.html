@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/signin.css') }}">
+{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="signin card text-dark bg-light mx-auto" style="max-width: 40rem;">
+        <div class="card-body">
+            <h5 class="card-title">Sign in</h5>
+
+            <form id="addForm" autocomplete="off">
+                <div class="mb-3">
+                    <label for=inputEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                </div>
+                
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpBlock">
+
+                <button type="submit" class="btn btn-dark" style="margin: 10px;">Sign in</button>
+            </form>
+            <p id="err-msg" class="card-text">Don't have an account yet?</p>
+            <button type="submit" class="btn btn-dark">Sign up</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

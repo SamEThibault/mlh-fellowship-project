@@ -1,0 +1,10 @@
+.main {
+    height: 100vh;
+    background-color: #282c44;
+    text-align: center;
+  }
+  
+  .signup {
+      position: absolute;
+      top: 10vh;
+  }
