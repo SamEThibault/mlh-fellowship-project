@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from dotenv import load_dotenv
 import json
 from peewee import *
@@ -7,9 +7,16 @@ import datetime
 from playhouse.shortcuts import model_to_dict
 import werkzeug
 import libgravatar
+from flask_login import LoginManager, UserMixin, login_required
 
 load_dotenv()
 app = Flask(__name__)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "signin"
+
+app.secret_key = os.getenv("SECRET_KEY")
 
 # store portfolio directory, then get json data path
 portfolio_dir = os.path.dirname(os.path.realpath(__file__))
@@ -29,7 +36,7 @@ else:
         user=os.getenv("MYSQL_USER"),
         password=os.getenv("MYSQL_PASSWORD"),
         host=os.getenv("MYSQL_HOST"),
-        port=3306,
+        port=3306
     )
 
 print(mydb)
@@ -43,12 +50,19 @@ class TimelinePost(Model):
     avatar = CharField(default="Testing")
 
     class Meta:
+        database = mydb 
+
+# peewee model for the users
+class User(UserMixin, Model):
+    username = CharField(unique=True)
+
+    class Meta:
         database = mydb
 
 
-# connect to the database, and create a table using the above model
+# connect to the database, and create tables using the above models
 mydb.connect()
-mydb.create_tables([TimelinePost])
+mydb.create_tables([TimelinePost, User])
 
 
 ##### FRONTEND ROUTES #####
@@ -78,10 +92,18 @@ def experience():
 
 
 @app.route("/timeline")
+@login_required
 def timeline():
     return render_template(
         "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL")
     )
+
+
+##### Authentication #####
+# get user based on id
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 @app.route("/signin")
 def signin():
@@ -89,28 +111,51 @@ def signin():
         "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
     )
 
-@app.route("/signup")
-def signup():
+@app.route("/signup", methods=["GET"])
+def get_signup():
     return render_template(
         "signup.html", title="Sam Thibault - Sign up", url=os.getenv("URL")
     )
 
+@app.route("/signup", methods=["POST"])
+def post_signup():
+    try:
+        name = request.form["name"]
+        print(name)
+        new_user = User.create(name=name)
+        print(model_to_dict(new_user))
+        return render_template(
+            "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
+        )
+    except:
+        return "Something went wrong, please try again", 400
 
 ##### API ROUTES #####
 # add a document by specifying field values in the request body
 @app.route("/api/timeline_post", methods=["POST"])
 def post_time_line_post():
 
-    name = request.form["name"]
+    # start by checking if the http request structure is correct
+    req = request
+    if "name" not in req.form:
+        return "Invalid name, please try again", 400
+    elif "email" not in req.form:
+        return "Invalid email, please try again", 400
+    elif "content" not in req.form:
+        return "Invalid content, please try again", 400
+
+    # if it is, we can assign some variables
+    name = req.form["name"]
     print(name)
-    email = request.form["email"]
+    email = req.form["email"]
     print(email)
-    content = request.form["content"]
+    content = req.form["content"]
     print(content)
+
     # use libgravatar to find profile image link for the submitted email, default to basic avatar
     avatar = libgravatar.Gravatar(email).get_image(default="mm")
 
-    # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly
+    # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly here
     if content == "":
         return "Invalid content, please try again", 400
     elif "@" not in email or "." not in email:
@@ -152,17 +197,3 @@ def delete_all():
     qry = TimelinePost.delete()
     qry.execute()
     return "deleted all rows"
-
-
-# for erronous request bodies, return the appropriate message depending on missing fields
-@app.errorhandler(werkzeug.exceptions.BadRequest)
-def handle_bad_request(e):
-    req = request
-    if "name" not in req.form:
-        return "Invalid name, please try again", 400
-    elif "email" not in req.form:
-        return "Invalid email, please try again", 400
-    elif "content" not in req.form:
-        return "Invalid content, please try again", 400
-    else:
-        return "Invalid format, please try again"
