@@ -7,7 +7,7 @@ import datetime
 from playhouse.shortcuts import model_to_dict
 import werkzeug
 import libgravatar
-from flask_login import LoginManager, UserMixin, login_required
+from flask_login import LoginManager, UserMixin, login_required, login_user
 
 load_dotenv()
 app = Flask(__name__)
@@ -54,7 +54,8 @@ class TimelinePost(Model):
 
 # peewee model for the users
 class User(UserMixin, Model):
-    username = CharField(unique=True)
+    name = CharField(unique=True)
+    password = CharField()
 
     class Meta:
         database = mydb
@@ -105,7 +106,7 @@ def timeline():
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-@app.route("/signin")
+@app.route("/signin", methods=["GET"])
 def signin():
     return render_template(
         "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
@@ -117,18 +118,39 @@ def get_signup():
         "signup.html", title="Sam Thibault - Sign up", url=os.getenv("URL")
     )
 
-@app.route("/signup", methods=["POST"])
+# used to store new user in database
+@app.route("/api/signup", methods=["POST"])
 def post_signup():
-    try:
-        name = request.form["name"]
-        print(name)
-        new_user = User.create(name=name)
-        print(model_to_dict(new_user))
-        return render_template(
-            "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
-        )
-    except:
-        return "Something went wrong, please try again", 400
+    # ensure the request body contains the necessary information
+    if "name" and "password" in request.form:
+            name = request.form["name"]
+            password = request.form["password"]
+            query = User.select().where(User.name == name)
+
+            # username must be unique, if it already exists, return error
+            if query.exists():
+                return "User already exists!", 400
+
+            user = User.create(name=name, password=password)
+            print(model_to_dict(user))
+            return render_template(
+                "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
+            )
+    return "Something went wrong, please try again", 400
+
+# used to validate a login attempt
+@app.route("/api/signin", methods=["GET"])
+def signin_check():
+    if "name" and "password" in request.form:
+        user = User.get_or_none(User.name == request.form["name"])
+        if user != None:
+            if request.form["password"] == user.password:
+                login_user(user)
+                return render_template(
+        "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL")
+    )
+    else:
+        return "Wrong username or password, please try again", 400
 
 ##### API ROUTES #####
 # add a document by specifying field values in the request body
