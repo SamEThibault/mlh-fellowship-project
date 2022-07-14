@@ -230,14 +230,22 @@ def get_time_line_post():
 # delete a document by name
 @app.route("/api/timeline_post", methods=["DELETE"])
 def delete_time_line_post():
-    idToDelete = request.form["id"]
-    qry = TimelinePost.delete().where(TimelinePost.id == idToDelete)
-    result = qry.execute()
 
-    if result == 0:
-        return "error, invalid ID. Try again", 400
+    # get the author name associated with the post id
+    idToDelete = request.form["id"]
+    postAuthor = TimelinePost.get_by_id(idToDelete).name
+    print(current_user.name)
+
+    # if the author matches the current user's name (case insensitive), try deleting, and return result message
+    if postAuthor.lower() == current_user.name.lower():
+        qry = TimelinePost.delete().where(TimelinePost.id == idToDelete)
+        result = qry.execute()
+        if result == 0:
+            return "error, invalid ID. Try again", 400
+        else:
+            return "deleted: " + idToDelete, 200
     else:
-        return "deleted: " + idToDelete
+        return "You do not have permission to delete this post.", 400
 
 
 # this mapping deletes all documents from the database (used for testing)
