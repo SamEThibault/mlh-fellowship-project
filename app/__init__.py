@@ -181,15 +181,14 @@ def post_time_line_post():
 
     # start by checking if the http request structure is correct
     req = request
-    if "name" not in req.form:
-        return "Invalid name, please try again", 400
-    elif "email" not in req.form:
+
+    if "email" not in req.form:
         return "Invalid email, please try again", 400
     elif "content" not in req.form:
         return "Invalid content, please try again", 400
 
     # if it is, we can assign some variables
-    name = req.form["name"]
+    name = current_user.name
     print(name)
     email = req.form["email"]
     print(email)
