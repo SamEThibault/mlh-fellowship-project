@@ -7,7 +7,7 @@ import datetime
 from playhouse.shortcuts import model_to_dict
 import werkzeug
 import libgravatar
-from flask_login import LoginManager, UserMixin, login_required, login_user
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 
 load_dotenv()
 app = Flask(__name__)
@@ -97,7 +97,7 @@ def experience():
 @login_required
 def timeline():
     return render_template(
-        "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL")
+        "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL"), name=current_user.name
     )
 
 
@@ -119,7 +119,10 @@ def get_signup():
 # get user based on id
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    try:
+        return User.get(user_id)
+    except:
+        return None
 
 
 # used to store new user in database
@@ -146,13 +149,24 @@ def post_signup():
 def signin_check():
     if "name" and "password" in request.form:
         user = User.get_or_none(User.name == request.form["name"])
+
         if user != None:
             if request.form["password"] == user.password:
                 login_user(user)
                 return model_to_dict(user)
+            else:
+                return "Wrong password, please try again", 400
 
     return "Wrong username or password, please try again", 400
 
+# signout method which clears session cookies and returns to the home page
+@app.route("/signout")
+@login_required
+def signout():
+    logout_user()
+    return render_template(
+        "index.html", title="Sam Thibault - Home", url=os.getenv("URL"), data=data
+    )
 
 ##### API ROUTES #####
 # add a document by specifying field values in the request body

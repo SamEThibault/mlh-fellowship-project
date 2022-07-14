@@ -28,10 +28,9 @@ signinForm.addEventListener('submit', event => {
     fetch("/api/signin", requestOptions)
       .then(response => response.text())
             .then(text => {
-                console.log(text)
+                
                 // check if the response is in JSON format
                 try {
-                    console.log(text)
                     JSON.parse(text);
                 } catch (e) {
                     // if it's not, show error msg (if error msg is in HTML format, remove the element tags for plain text)
