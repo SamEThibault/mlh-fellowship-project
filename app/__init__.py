@@ -1,15 +1,28 @@
 import os
-from flask import Flask, render_template, request
+import secrets
+from flask import Flask, render_template, redirect
 from dotenv import load_dotenv
 import json
-from peewee import *
-import datetime
-from playhouse.shortcuts import model_to_dict
 import werkzeug
-import libgravatar
+from flask_login import LoginManager, login_required, current_user, logout_user
 
+from app.timeline import timeline_api
+from app.auth import authentication_api
+from app.db import User
+
+# load env variables, set app variable, and register blueprints to access all api routes
 load_dotenv()
 app = Flask(__name__)
+app.register_blueprint(timeline_api)
+app.register_blueprint(authentication_api)
+
+# flask-login initialization
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "signin"
+
+# generate secret key
+app.secret_key = secrets.token_urlsafe(16)
 
 # store portfolio directory, then get json data path
 portfolio_dir = os.path.dirname(os.path.realpath(__file__))
@@ -18,38 +31,13 @@ dataPath = os.path.join(portfolio_dir, "static/data.json")
 data = open(dataPath)
 data = json.load(data)
 
-# if env variable TESTING is set to true, instantiate a in-memory db for testing purposes only
-if os.getenv("TESTING") == "true":
-    print("Running in test mode")
-    mydb = SqliteDatabase("file:memory?mode=memory&cache=shared", uri=True)
-else:
-    # for production, connect to real db specified by .env variables
-    mydb = MySQLDatabase(
-        os.getenv("MYSQL_DATABASE"),
-        user=os.getenv("MYSQL_USER"),
-        password=os.getenv("MYSQL_PASSWORD"),
-        host=os.getenv("MYSQL_HOST"),
-        port=3306,
-    )
-
-print(mydb)
-
-# peewee model for the timeline posts
-class TimelinePost(Model):
-    name = CharField()
-    email = CharField()
-    content = TextField()
-    created_at = DateTimeField(default=datetime.datetime.now)
-    avatar = CharField(default="Testing")
-
-    class Meta:
-        database = mydb
-
-
-# connect to the database, and create a table using the above model
-mydb.connect()
-mydb.create_tables([TimelinePost])
-
+# get user based on id
+@login_manager.user_loader
+def load_user(user_id):
+    try:    
+        return User.get(int(user_id))
+    except:
+        return None
 
 ##### FRONTEND ROUTES #####
 # routes send the loaded json object "data" to display personal information
@@ -78,79 +66,34 @@ def experience():
 
 
 @app.route("/timeline")
+@login_required
 def timeline():
     return render_template(
-        "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL")
+        "timeline.html",
+        title="Sam Thibault - Timeline",
+        url=os.getenv("URL"),
+        name=current_user.name,
     )
 
 
-##### API ROUTES #####
-# add a document by specifying field values in the request body
-@app.route("/api/timeline_post", methods=["POST"])
-def post_time_line_post():
-
-    name = request.form["name"]
-    print(name)
-    email = request.form["email"]
-    print(email)
-    content = request.form["content"]
-    print(content)
-    # use libgravatar to find profile image link for the submitted email, default to basic avatar
-    avatar = libgravatar.Gravatar(email).get_image(default="mm")
-
-    # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly
-    if content == "":
-        return "Invalid content, please try again", 400
-    elif "@" not in email or "." not in email:
-        return "Invalid email, please try again", 400
-    elif name == "":
-        return "Invalid name, please try again", 400
-    else:
-        timeline_post = TimelinePost.create(name=name, email=email, content=content, avatar=avatar)
-        return model_to_dict(timeline_post)
+@app.route("/signin", methods=["GET"])
+def signin():
+    return render_template(
+        "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
+    )
 
 
-# get all documents
-@app.route("/api/timeline_post", methods=["GET"])
-def get_time_line_post():
-    return {
-        "timeline_posts": [
-            model_to_dict(p)
-            for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
-        ]
-    }
+@app.route("/signup", methods=["GET"])
+def get_signup():
+    return render_template(
+        "signup.html", title="Sam Thibault - Sign up", url=os.getenv("URL")
+    )
 
 
-# delete a document by name
-@app.route("/api/timeline_post", methods=["DELETE"])
-def delete_time_line_post():
-    idToDelete = request.form["id"]
-    qry = TimelinePost.delete().where(TimelinePost.id == idToDelete)
-    result = qry.execute()
-
-    if result == 0:
-        return "error, invalid ID. Try again", 400
-    else:
-        return "deleted: " + idToDelete
-
-
-# this mapping deletes all documents from the database (used for testing)
-@app.route("/api/timeline_post/purge", methods=["DELETE"])
-def delete_all():
-    qry = TimelinePost.delete()
-    qry.execute()
-    return "deleted all rows"
-
-
-# for erronous request bodies, return the appropriate message depending on missing fields
-@app.errorhandler(werkzeug.exceptions.BadRequest)
-def handle_bad_request(e):
-    req = request
-    if "name" not in req.form:
-        return "Invalid name, please try again", 400
-    elif "email" not in req.form:
-        return "Invalid email, please try again", 400
-    elif "content" not in req.form:
-        return "Invalid content, please try again", 400
-    else:
-        return "Invalid format, please try again"
+# signout method which clears session cookies and returns to the home page
+@app.route("/signout")
+@login_required
+def signout():
+    logout_user()
+    return redirect("/")
+##### END OF FRONTEND ROUTES #####

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/signup.css') }}">
+<script src="{{ url_for('static', filename='scripts/userSignup.js') }}" defer></script>
+{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="signup card text-dark bg-light mx-auto" style="max-width: 40rem;">
+        <div class="card-body">
+            <h5 class="card-title">Sign up</h5>
+
+            <form id="signup-form" autocomplete="off">
+                <div class="mb-3">
+                    <label for=inputEmail" class="form-label">Pick your username</label>
+                    <input type="text" class="form-control" id="inputName" aria-describedby="textHelp">
+                </div>
+                
+                <label for="inputPassword" class="form-label">Pick your password</label>
+                <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpBlock">
+
+                <button type="submit" class="btn btn-dark" style="margin: 10px;">Sign up</button>
+            </form>
+            <p id="err-msg" class="card-text">Already have an account?</p>
+            <button id="signin-btn" type="submit" class="btn btn-dark">Sign in</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

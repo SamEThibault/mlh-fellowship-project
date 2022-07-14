@@ -49,6 +49,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('timeline') }}">Timeline</a>
                 </li>
+
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('signout') }}">Logout</a>
+                    </li>
+                {% endif %}
+                
                 <li class="nav-item">
                     <a href="https://www.linkedin.com/in/samuelemardthibault/">
                         <i class="fa fa-2x fa-linkedin-square icon-nav"></i>
