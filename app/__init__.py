@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, request, session
+import secrets
+from flask import Flask, render_template, request, redirect
 from dotenv import load_dotenv
 import json
 from peewee import *
@@ -7,16 +8,17 @@ import datetime
 from playhouse.shortcuts import model_to_dict
 import werkzeug
 import libgravatar
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from flask_login import *
 
 load_dotenv()
 app = Flask(__name__)
 
+# flask-login initialization
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "signin"
 
-app.secret_key = os.getenv("SECRET_KEY")
+app.secret_key = secrets.token_urlsafe(16)
 
 # store portfolio directory, then get json data path
 portfolio_dir = os.path.dirname(os.path.realpath(__file__))
@@ -164,9 +166,7 @@ def signin_check():
 @login_required
 def signout():
     logout_user()
-    return render_template(
-        "index.html", title="Sam Thibault - Home", url=os.getenv("URL"), data=data
-    )
+    return redirect("/")
 
 ##### API ROUTES #####
 # add a document by specifying field values in the request body
