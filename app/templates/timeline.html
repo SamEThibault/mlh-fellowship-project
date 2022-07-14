@@ -11,6 +11,11 @@
 
 <div class="main">
     <h1 class="title">Timeline</h1>
+    <h2 style="margin-bottom: 20px;">
+        {% if current_user.is_authenticated %}
+        Hi {{ current_user.name }}!
+        {% endif %}
+    </h2>
 
     <!-- POST form wrapped inside Bootstrap card -->
     <div class="card text-dark bg-light mb-5 mx-auto" style="max-width: 40rem;">
