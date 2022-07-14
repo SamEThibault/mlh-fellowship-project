@@ -36,7 +36,7 @@ else:
         user=os.getenv("MYSQL_USER"),
         password=os.getenv("MYSQL_PASSWORD"),
         host=os.getenv("MYSQL_HOST"),
-        port=3306
+        port=3306,
     )
 
 print(mydb)
@@ -50,7 +50,8 @@ class TimelinePost(Model):
     avatar = CharField(default="Testing")
 
     class Meta:
-        database = mydb 
+        database = mydb
+
 
 # peewee model for the users
 class User(UserMixin, Model):
@@ -100,17 +101,12 @@ def timeline():
     )
 
 
-##### Authentication #####
-# get user based on id
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
 @app.route("/signin", methods=["GET"])
 def signin():
     return render_template(
         "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
     )
+
 
 @app.route("/signup", methods=["GET"])
 def get_signup():
@@ -118,39 +114,45 @@ def get_signup():
         "signup.html", title="Sam Thibault - Sign up", url=os.getenv("URL")
     )
 
+
+##### Authentication #####
+# get user based on id
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+
 # used to store new user in database
 @app.route("/api/signup", methods=["POST"])
 def post_signup():
     # ensure the request body contains the necessary information
     if "name" and "password" in request.form:
-            name = request.form["name"]
-            password = request.form["password"]
-            query = User.select().where(User.name == name)
+        name = request.form["name"]
+        password = request.form["password"]
+        query = User.select().where(User.name == name)
 
-            # username must be unique, if it already exists, return error
-            if query.exists():
-                return "User already exists!", 400
+        # username must be unique, if it already exists, return error
+        if query.exists():
+            return "User already exists!", 400
 
-            user = User.create(name=name, password=password)
-            print(model_to_dict(user))
-            return render_template(
-                "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
-            )
+        user = User.create(name=name, password=password)
+        print(model_to_dict(user))
+        return model_to_dict(user)
     return "Something went wrong, please try again", 400
 
+
 # used to validate a login attempt
-@app.route("/api/signin", methods=["GET"])
+@app.route("/api/signin", methods=["POST"])
 def signin_check():
     if "name" and "password" in request.form:
         user = User.get_or_none(User.name == request.form["name"])
         if user != None:
             if request.form["password"] == user.password:
                 login_user(user)
-                return render_template(
-        "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL")
-    )
-    else:
-        return "Wrong username or password, please try again", 400
+                return model_to_dict(user)
+
+    return "Wrong username or password, please try again", 400
+
 
 ##### API ROUTES #####
 # add a document by specifying field values in the request body
@@ -185,7 +187,9 @@ def post_time_line_post():
     elif name == "":
         return "Invalid name, please try again", 400
     else:
-        timeline_post = TimelinePost.create(name=name, email=email, content=content, avatar=avatar)
+        timeline_post = TimelinePost.create(
+            name=name, email=email, content=content, avatar=avatar
+        )
         return model_to_dict(timeline_post)
 
 
