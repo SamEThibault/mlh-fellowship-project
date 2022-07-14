@@ -28,10 +28,8 @@ signupForm.addEventListener('submit', event => {
     fetch("/api/signup", requestOptions)
       .then(response => response.text())
             .then(text => {
-                console.log(text)
                 // check if the response is in JSON format
                 try {
-                    console.log(text)
                     JSON.parse(text);
                 } catch (e) {
                     // if it's not, show error msg

@@ -7,6 +7,7 @@ from peewee import *
 import datetime
 from playhouse.shortcuts import model_to_dict
 import werkzeug
+from werkzeug.security import generate_password_hash, check_password_hash
 import libgravatar
 from flask_login import *
 
@@ -59,7 +60,6 @@ class TimelinePost(Model):
 class User(UserMixin, Model):
     name = CharField(unique=True)
     password = CharField()
-
 
 
     class Meta:
@@ -131,21 +131,24 @@ def load_user(user_id):
     except:
         return None
 
+
 # used to store new user in database
 @app.route("/api/signup", methods=["POST"])
 def post_signup():
     # ensure the request body contains the necessary information
     if "name" and "password" in request.form:
         name = request.form["name"]
-        password = request.form["password"]
+        pw = request.form["password"]
         query = User.select().where(User.name == name)
 
         # username must be unique, if it already exists, return error
         if query.exists():
             return "User already exists!", 400
 
-        user = User.create(name=name, password=password)
-        print(model_to_dict(user))
+        # if name is valid, hash the password and create a user object
+        hashed_pw = generate_password_hash(pw)
+
+        user = User.create(name=name, password=hashed_pw)
         return model_to_dict(user)
     return "Something went wrong, please try again", 400
 
@@ -156,8 +159,9 @@ def signin_check():
     if "name" and "password" in request.form:
         user = User.get_or_none(User.name == request.form["name"])
 
+        # if the user exists, check to see if the password matches the stored hash value, if so: login to session
         if user != None:
-            if request.form["password"] == user.password:
+            if check_password_hash(user.password, request.form["password"]) == True:
                 login_user(user)
                 return model_to_dict(user)
             else:
