@@ -3,7 +3,7 @@ const signinBtn = document.querySelector('#signin-btn')
 signinBtn.addEventListener('click', event => {
     document.location.href = "/signin"})
 
-// when submitting login form, post a request and display error or redirect on success
+// when submitting sign up form, post a request and display error or redirect on success
 const signupForm = document.querySelector('#signup-form')
 signupForm.addEventListener('submit', event => {
 
