@@ -27,12 +27,12 @@ signupForm.addEventListener('submit', event => {
 
     err = false
     fetch("/api/signup", requestOptions)
-        .then(response => response.status)
-        .then(status => {
+        .then(response => response.json())
+        .then(json => {
 
-            if (status != 200) {
+            if (json.status != 200) {
                 // if err occured, show it
-                document.querySelector('#err-msg').innerHTML = "Error: " + status
+                document.querySelector('#err-msg').innerHTML = json.body
                 err = true;
             }
         })

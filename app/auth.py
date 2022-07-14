@@ -16,18 +16,22 @@ def post_signup():
     if "name" and "password" in request.form:
         name = request.form["name"]
         pw = request.form["password"]
+
+        if pw == "":
+            return {"body" : "Invalid password, please try again", "status" : 400}
+            
         query = User.select().where(User.name == name)
 
         # username must be unique, if it already exists, return error
         if query.exists():
-            return "User already exists!", 400
+            return {"body" : "User already exists!", "status" : 400}
 
         # if name is valid, hash the password and create a user object
         hashed_pw = generate_password_hash(pw)
         User.create(name=name, password=hashed_pw)
 
-        return "signup successful", 200
-    return "Something went wrong, please try again", 400
+        return {"body" : "Signup successful", "status" : 200}
+    return {"body" : "Something went wrong, please try again", "status" : 400}
 
 
 # used to validate a login attempt
@@ -40,10 +44,10 @@ def signin_check():
         if user != None:
             if check_password_hash(user.password, request.form["password"]):
                 login_user(user)
-                return "login successful", 200
+                return {"body" : "Login successful", "status" : 200}
             else:
-                return "Wrong password, please try again", 400
+                return {"body" : "Incorrect password, please try again", "status" : 400}
 
-    return "Wrong username or password, please try again", 400
+    return {"body" : "Invalid username or password, please try again", "status" : 400}
 
 ##### END OF AUTHENTICATION #####
