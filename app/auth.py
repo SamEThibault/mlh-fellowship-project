@@ -24,9 +24,9 @@ def post_signup():
 
         # if name is valid, hash the password and create a user object
         hashed_pw = generate_password_hash(pw)
+        User.create(name=name, password=hashed_pw)
 
-        user = User.create(name=name, password=hashed_pw)
-        return model_to_dict(user)
+        return "signup successful", 200
     return "Something went wrong, please try again", 400
 
 
@@ -38,9 +38,9 @@ def signin_check():
 
         # if the user exists, check to see if the password matches the stored hash value, if so: login to session
         if user != None:
-            if check_password_hash(user.password, request.form["password"]) == True:
+            if check_password_hash(user.password, request.form["password"]):
                 login_user(user)
-                return model_to_dict(user)
+                return "login successful", 200
             else:
                 return "Wrong password, please try again", 400
 
