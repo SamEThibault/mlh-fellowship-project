@@ -1,7 +1,7 @@
 import os
 from peewee import *
 import datetime
-from flask_login import *
+from flask_login import UserMixin
 
 # if env variable TESTING is set to true, instantiate a in-memory db for testing purposes only
 if os.getenv("TESTING") == "true":
