@@ -55,7 +55,6 @@ addForm.addEventListener('submit', event => {
 
     // add search parameters based on form's inputs
     var urlencodedP = new URLSearchParams();
-    urlencodedP.append("name", document.getElementById("inputName").value);
     urlencodedP.append("email", document.getElementById("inputEmail").value);
     urlencodedP.append("content", document.getElementById("inputContent").value);
 
@@ -76,7 +75,6 @@ addForm.addEventListener('submit', event => {
 
             // check if the response is in JSON format
             try {
-                console.log(text)
                 JSON.parse(text);
             } catch (e) {
                 // if it's not, show error msg (if error msg is in HTML format, remove the element tags for plain text)
@@ -109,8 +107,6 @@ function getAll() {
 
             // at this point, response is now a JSON object
             var text = JSON.parse(results).timeline_posts
-            console.log(text)
-
 
             // generate bootstrap cards for each of the elements in the array
             let content = '';
