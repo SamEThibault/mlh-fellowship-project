@@ -241,7 +241,7 @@ def delete_time_line_post():
     postAuthor = qry.name
 
     # if the author matches the current user's name (case insensitive), try deleting, and return result message
-    if postAuthor.lower() == current_user.name.lower():
+    if postAuthor.lower() == current_user.name.lower() or current_user.name == "admin":
         qry = TimelinePost.delete().where(TimelinePost.id == idToDelete)
         qry.execute()
         return "deleted: " + idToDelete, 200
