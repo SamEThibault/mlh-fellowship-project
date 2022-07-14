@@ -34,10 +34,11 @@ data = json.load(data)
 # get user based on id
 @login_manager.user_loader
 def load_user(user_id):
-    try:    
+    try:
         return User.get(int(user_id))
     except:
         return None
+
 
 ##### FRONTEND ROUTES #####
 # routes send the loaded json object "data" to display personal information
@@ -96,4 +97,6 @@ def get_signup():
 def signout():
     logout_user()
     return redirect("/")
+
+
 ##### END OF FRONTEND ROUTES #####
