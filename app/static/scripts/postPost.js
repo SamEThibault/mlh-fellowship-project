@@ -24,12 +24,13 @@ addForm.addEventListener('submit', event => {
     var err = false;
     // send the http request, and handle errors if status != 200
     fetch("/api/timeline_post", requestOptionsP)
-        .then(response => response.status)
-        .then(status => {
+        .then(res => res.json())
+        .then(json =>  {
 
-            if (status != 200) {
+            if (json.status != 200) {
+                
                 // if it's not, show error msg (if error msg is in HTML format, remove the element tags for plain text)
-                document.querySelector('#err-msg').innerHTML = "Error: " + status
+                document.querySelector('#err-msg').innerHTML = json.body
                 err = true;
             }
 

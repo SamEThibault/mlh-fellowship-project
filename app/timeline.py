@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, Response
 from app.db import TimelinePost
 from flask_login import current_user
 from playhouse.shortcuts import model_to_dict
@@ -17,9 +17,9 @@ def post_time_line_post():
     req = request
 
     if "email" not in req.form:
-        return "Invalid email, please try again", 400
+        return {"body" : "Empty email, please try again", "status" : 400}
     elif "content" not in req.form:
-        return "Invalid content, please try again", 400
+        return {"body" : "Empty content, please try again", "status" : 400}
 
     # if it is, we can assign some variables
     name = current_user.name
@@ -34,11 +34,11 @@ def post_time_line_post():
 
     # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly here
     if content == "":
-        return "Invalid content, please try again", 400
+        return {"body" : "Empty content, please try again", "status" : 400}
     elif "@" not in email or "." not in email:
-        return "Invalid email, please try again", 400
+        return {"body" : "Invalid email, please try again", "status" : 400}
     elif name == "":
-        return "Invalid name, please try again", 400
+        return {"body" : "Name error, please try again", "status" : 400}
     else:
         timeline_post = TimelinePost.create(
             name=name, email=email, content=content, avatar=avatar
@@ -66,7 +66,7 @@ def delete_time_line_post():
     try:
         qry = TimelinePost.get(idToDelete == TimelinePost.id)
     except:
-        return "Invalid ID, please try again", 400
+        return {"body" : "Invalid ID, please try again", "status" : 400}
 
     postAuthor = qry.name
 
@@ -76,6 +76,6 @@ def delete_time_line_post():
         qry.execute()
         return "deleted: " + idToDelete, 200
     else:
-        return "You do not have permission to delete this post.", 400
+        return {"body" : "You do not have permission to delete this post", "status" : 400}
 
 ##### END OF TIMELINE API ROUTES #####
