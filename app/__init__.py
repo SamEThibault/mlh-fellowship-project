@@ -60,6 +60,8 @@ class User(UserMixin, Model):
     name = CharField(unique=True)
     password = CharField()
 
+
+
     class Meta:
         database = mydb
 
@@ -99,7 +101,10 @@ def experience():
 @login_required
 def timeline():
     return render_template(
-        "timeline.html", title="Sam Thibault - Timeline", url=os.getenv("URL"), name=current_user.name
+        "timeline.html",
+        title="Sam Thibault - Timeline",
+        url=os.getenv("URL"),
+        name=current_user.name,
     )
 
 
@@ -121,11 +126,10 @@ def get_signup():
 # get user based on id
 @login_manager.user_loader
 def load_user(user_id):
-    try:
-        return User.get(user_id)
+    try:    
+        return User.get(int(user_id))
     except:
         return None
-
 
 # used to store new user in database
 @app.route("/api/signup", methods=["POST"])
@@ -161,12 +165,14 @@ def signin_check():
 
     return "Wrong username or password, please try again", 400
 
+
 # signout method which clears session cookies and returns to the home page
 @app.route("/signout")
 @login_required
 def signout():
     logout_user()
     return redirect("/")
+
 
 ##### API ROUTES #####
 # add a document by specifying field values in the request body
