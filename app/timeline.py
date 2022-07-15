@@ -43,7 +43,7 @@ def post_time_line_post():
         timeline_post = TimelinePost.create(
             name=name, email=email, content=content, avatar=avatar
         )
-        return model_to_dict(timeline_post)
+        return {"body" : "Success!", "status" : 200}
 
 
 # get all documents
