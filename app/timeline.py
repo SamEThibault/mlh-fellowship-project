@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, request, Response
 from app.db import TimelinePost
 from flask_login import current_user
@@ -22,14 +23,12 @@ def post_time_line_post():
         return {"body" : "Empty content, please try again", "status" : 400}
 
     # if it is, we can assign some variables
-
-    # check is the user is authenticated (at this point, the user must be)
-    if current_user.is_authenticated:
-        name = current_user.name
-    else:
-        # for testing purposes, set name to non-null value
+    # if we're currently testing, user won't be authenticated to set name to default value
+    if os.getenv("TESTING") == "true":
         name = "default"
-        
+    else: 
+        name = current_user.name
+
     print(name)
     email = req.form["email"]
     print(email)
