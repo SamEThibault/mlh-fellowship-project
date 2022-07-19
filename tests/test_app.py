@@ -18,11 +18,14 @@ class AppTestCase(unittest.TestCase):
         response = self.client.get("/")
         assert response.status_code == 200
         html = response.get_data(as_text=True)
-        assert "<h1 class=\"hidden\">Welcome to&nbspmy portfolio!</h1>" in html
+        assert '<h1 class="hidden">Welcome to&nbspmy portfolio!</h1>' in html
         assert '<h1>&nbsp<span class="txt-type blink" data-wait="1500"' in html
         assert '<h1 class="hidden">Welcome to&nbspmy portfolio!</h1>' in html
 
     # Timeline API/frontend test
+    # Note: not testing the name field since the API does not expect a name field in the request. It
+    # is automatically added using the authenticated user's username. Unit tests are not included for the
+    # authentication feature
     def test_timeline(self):
 
         # GET posts, should return empty list of timeline objs
@@ -44,45 +47,25 @@ class AppTestCase(unittest.TestCase):
 
     # send bad requests and test responses
     def test_malformed_timeline_post(self):
-        # POST request with missing name
-        response = self.client.post(
-            "/api/timeline_post",
-            data={"email": "john@example.com", "content": "Hello world, I'm John!"},
-        )
-        assert response.status_code == 400
-        html = response.get_data(as_text=True)
-        assert "Invalid name" in html
-
-        # POST request with empty name
-        response = self.client.post(
-            "/api/timeline_post",
-            data={
-                "name": "",
-                "email": "john@example.com",
-                "content": "Hello World, I am John",
-            },
-        )
-        assert response.status_code == 400
-        html = response.get_data(as_text=True)
-        assert "Invalid name" in html
 
         # POST request with empty content
         response = self.client.post(
             "/api/timeline_post",
-            data={"name": "John Doe", "email": "john@example.com", "content": ""},
+            data={"email": "john@example.com", "content": ""},
         )
-        assert response.status_code == 400
-        html = response.get_data(as_text=True)
-        assert "Invalid content" in html
+
+        json = response.get_json()
+        assert json["status"] == 400
+        assert "Empty content" in json["body"]
 
         # POST request with missing content
         response = self.client.post(
             "/api/timeline_post",
-            data={"name": "John Doe", "email": "john@example.com"},
+            data={"email": "john@example.com"},
         )
-        assert response.status_code == 400
-        html = response.get_data(as_text=True)
-        assert "Invalid content" in html
+        json = response.get_json()
+        assert json["status"] == 400
+        assert "Empty content" in json["body"]
 
         # POST request with malformed email
         response = self.client.post(
@@ -93,9 +76,10 @@ class AppTestCase(unittest.TestCase):
                 "content": "Hello World, I am John",
             },
         )
-        assert response.status_code == 400
-        html = response.get_data(as_text=True)
-        assert "Invalid email" in html
+
+        json = response.get_json()
+        assert json["status"] == 400
+        assert "Invalid email" in json["body"]
 
         # POST request with missing email
         response = self.client.post(
@@ -105,9 +89,10 @@ class AppTestCase(unittest.TestCase):
                 "content": "Hello World, I am John",
             },
         )
-        assert response.status_code == 400
-        html = response.get_data(as_text=True)
-        assert "Invalid email" in html
+
+        json = response.get_json()
+        assert json["status"] == 400
+        assert "Invalid email" in json["body"]
 
         # POST request with empty email
         response = self.client.post(
@@ -118,6 +103,7 @@ class AppTestCase(unittest.TestCase):
                 "content": "Hello World, I am John",
             },
         )
-        assert response.status_code == 400
-        html = response.get_data(as_text=True)
-        assert "Invalid email" in html
+
+        json = response.get_json()
+        assert json["status"] == 400
+        assert "Invalid email" in json["body"]

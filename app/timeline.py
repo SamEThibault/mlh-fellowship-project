@@ -17,12 +17,19 @@ def post_time_line_post():
     req = request
 
     if "email" not in req.form:
-        return {"body" : "Empty email, please try again", "status" : 400}
+        return {"body" : "Invalid email, please try again", "status" : 400}
     elif "content" not in req.form:
         return {"body" : "Empty content, please try again", "status" : 400}
 
     # if it is, we can assign some variables
-    name = current_user.name
+
+    # check is the user is authenticated (at this point, the user must be)
+    if current_user.is_authenticated:
+        name = current_user.name
+    else:
+        # for testing purposes, set name to non-null value
+        name = "default"
+        
     print(name)
     email = req.form["email"]
     print(email)
@@ -35,7 +42,7 @@ def post_time_line_post():
     # if the request body is formatted properly, and frontend form validation fails, ensure the fields are formatted properly here
     if content == "":
         return {"body" : "Empty content, please try again", "status" : 400}
-    elif "@" not in email or "." not in email:
+    elif "@" not in email or "." not in email or email == "":
         return {"body" : "Invalid email, please try again", "status" : 400}
     elif name == "":
         return {"body" : "Name error, please try again", "status" : 400}

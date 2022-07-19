@@ -21,7 +21,7 @@ print(mydb)
 
 # peewee model for the timeline posts
 class TimelinePost(Model):
-    name = CharField()
+    name = CharField(null = True)
     email = CharField()
     content = TextField()
     created_at = DateTimeField(default=datetime.datetime.now)
