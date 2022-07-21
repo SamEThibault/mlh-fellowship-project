@@ -57,9 +57,10 @@ jobs:
         run: ssh my-vps 'chmod +x ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh && ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh'
 
   notify:
+    needs: deploy
+    name: "Notify on Discord"
     runs-on: ubuntu-latest
     if: ${{ always() }}
-    name: "Notify on Discord"
     steps:
       - name: Success Notification
         if: ${{ needs.deploy.result == 'success' }}
