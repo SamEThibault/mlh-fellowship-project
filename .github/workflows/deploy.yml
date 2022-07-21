@@ -54,11 +54,10 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
 
       - name: Deploy site
-        run:  |
-          ssh my-vps 
-          chmod +x ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh
-          ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh
-          docker-compose ps
+        run: ssh my-vps 
+          'chmod +x ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh &&
+          ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh &&
+          docker-compose ps'
 
   notify:
     needs: deploy
