@@ -56,5 +56,13 @@ jobs:
       - name: Deploy site
         run: ssh my-vps 'chmod +x ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh && ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh'
 
-      - name: Notify Discord
+  notify:
+    if: ${{ always() }}
+    name: "Notify on Discord"
+    steps:
+      - name: Success Notification
+        if: ${{ needs.deploy.result == 'success' }}
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+      - name: Error Notification
+        if: ${{ needs.deploy.result == 'failure' }}
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=Deployment Error :("
