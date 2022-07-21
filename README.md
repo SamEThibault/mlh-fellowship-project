@@ -4,7 +4,7 @@
 With the help of [Luke](https://github.com/lukecheseldine) and [Mustafa](https://github.com/Mustaballer), this portfolio site was born during the first week of our MLH Fellowship's Orientation Hackathon. We wanted to build a website with an intuitive structure to prioritize UX. 
 
 ## What it does
-This is a portfolio website with a modular design built as a template for others to add their information in JSON format or from a database table, and be able to display it through this application. Multiple scripts are added for convenience such as unit and integration tests, API endpoint tests, and a re-deployment script.
+This is a portfolio website with a modular design built as a template for others to add their information in JSON format or from a database table, and be able to display it through this application. Multiple scripts are added for convenience such as unit and integration tests, API endpoint tests, and a re-deployment script. These are all leveraged through GitHub actions to create a CI/CD pipeline that tests code from pull requests, and re-deploys on pushes to main.
 
 The Flask application, MariaDB database, and NGINX reverse proxy are all containerized and orchestrated by Docker. The image configuration files are included and should be used for quick and easy deployment (see below).
 
