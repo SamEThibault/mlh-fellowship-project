@@ -34,7 +34,7 @@ jobs:
   deploy:
     needs: test
     name: "Deploy to VPS"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-lates
     steps:
       - name: Configure SSH
         run:  |
