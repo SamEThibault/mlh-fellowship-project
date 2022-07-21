@@ -54,7 +54,7 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
 
       - name: Deploy site
-        run: ssh my 'chmod +x ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh && ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh'
+        run: ssh my-vps 'chmod +x ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh && ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh'
 
   notify:
     needs: deploy
