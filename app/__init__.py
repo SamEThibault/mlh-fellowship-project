@@ -3,7 +3,13 @@ import secrets
 from flask import Flask, render_template, redirect
 from dotenv import load_dotenv
 import json
-from flask_login import LoginManager, login_required, current_user, logout_user
+from flask_login import (
+    LoginManager,
+    login_required,
+    current_user,
+    logout_user,
+    login_user,
+)
 
 from app.timeline import timeline_api
 from app.auth import authentication_api
@@ -29,6 +35,13 @@ dataPath = os.path.join(portfolio_dir, "static/data.json")
 
 data = open(dataPath)
 data = json.load(data)
+
+### this does not follow flask context rules and must be revised, in the meantime, timeline endpoints are not secured by user auth ###
+# # if we're testing:
+# if os.getenv("TESTING") == "true":
+#     # since db queries require a logged in user, login using .env username
+#     user = User.create(name=os.getenv("AUTH_USERNAME"), password=os.getenv("AUTH_PW"))
+#     login_user(user)
 
 # get user based on id
 @login_manager.user_loader

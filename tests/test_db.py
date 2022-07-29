@@ -1,13 +1,12 @@
 # Unit test for the MySQL database
-import os
 import unittest
 from peewee import *
-from app.db import TimelinePost
+from app.db import TimelinePost, User
 from playhouse.shortcuts import model_to_dict
-from flask_login import login_user
 
-MODELS = [TimelinePost]
-login_user(os.getenv("USERNAME"))
+MODELS = [TimelinePost, User]
+
+
 
 # instantiate a in-memory db for testing purposes
 test_db = SqliteDatabase(':memory:')

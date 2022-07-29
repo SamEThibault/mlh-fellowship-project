@@ -12,7 +12,7 @@ import libgravatar
 timeline_api = Blueprint('timeline_api', __name__)
 
 @timeline_api.route("/api/timeline_post", methods=["POST"])
-@login_required
+# @login_required
 def post_time_line_post():
 
     # start by checking if the http request structure is correct
@@ -55,7 +55,7 @@ def post_time_line_post():
 
 # get all documents
 @timeline_api.route("/api/timeline_post", methods=["GET"])
-@login_required
+# @login_required
 def get_time_line_post():
     return {
         "timeline_posts": [
@@ -67,7 +67,7 @@ def get_time_line_post():
 
 # delete a document by id
 @timeline_api.route("/api/timeline_post", methods=["DELETE"])
-@login_required
+# @login_required
 def delete_time_line_post():
 
     # get the author name associated with the post id

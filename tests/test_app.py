@@ -8,7 +8,6 @@ os.environ["TESTING"] = "true"
 from app import app
 from tests import test_db
 
-
 class AppTestCase(unittest.TestCase):
     def setUp(self):
         self.client = app.test_client()
