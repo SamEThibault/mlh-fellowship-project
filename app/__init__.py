@@ -35,13 +35,6 @@ dataPath = os.path.join(portfolio_dir, "static/data.json")
 data = open(dataPath)
 data = json.load(data)
 
-### this does not follow flask context rules and must be revised, in the meantime, timeline endpoints are not secured by user auth ###
-# # if we're testing:
-# if os.getenv("TESTING") == "true":
-#     # since db queries require a logged in user, login using .env username
-#     user = User.create(name=os.getenv("AUTH_USERNAME"), password=os.getenv("AUTH_PW"))
-#     login_user(user)
-
 # get user based on id
 @login_manager.user_loader
 def load_user(user_id):

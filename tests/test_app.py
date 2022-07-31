@@ -6,16 +6,7 @@ import os
 os.environ["TESTING"] = "true"
 
 from app import app
-from app.db import User 
-from flask_login import current_user, LoginManager
 from tests import test_db
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
 
 class AppTestCase(unittest.TestCase):
     def setUp(self):
@@ -41,11 +32,9 @@ class AppTestCase(unittest.TestCase):
             # test login functionality: ensure to add both valid name and pw variables in .env file, sign up, then login
             response = self.client.post("/api/signup", data={'name': os.getenv("AUTH_USERNAME"), 'password': os.getenv("AUTH_PW")})
             assert response.status_code == 200
-            print(response.status_code)
 
             response = self.client.post("api/signin", data={'name': os.getenv("AUTH_USERNAME"), 'password': os.getenv("AUTH_PW")})
             assert response.status_code == 200
-            print(response.status_code)
 
             # GET posts, should return empty list of timeline objs
             response = self.client.get("/api/timeline_post")
@@ -66,7 +55,6 @@ class AppTestCase(unittest.TestCase):
             assert len(json["timeline_posts"]) == 2
 
             ### test malformed requests to the timeline table ###
-        
             # POST request with empty content
             response = self.client.post(
                 "/api/timeline_post",
