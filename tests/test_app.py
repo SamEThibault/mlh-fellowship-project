@@ -14,6 +14,7 @@ class AppTestCase(unittest.TestCase):
 
     # home frontend test: ensure general elements are properly fetched
     def test_home(self):
+
         response = self.client.get("/")
         assert response.status_code == 200
         html = response.get_data(as_text=True)
@@ -27,82 +28,89 @@ class AppTestCase(unittest.TestCase):
     # authentication feature
     def test_timeline(self):
 
-        # GET posts, should return empty list of timeline objs
-        response = self.client.get("/api/timeline_post")
-        assert response.status_code == 200
-        assert response.is_json
-        json = response.get_json()
-        assert "timeline_posts" in json
-        assert len(json["timeline_posts"]) == 0
+         with self.client:
+            # test login functionality: ensure to add both valid name and pw variables in .env file, sign up, then login
+            response = self.client.post("/api/signup", data={'name': os.getenv("AUTH_USERNAME"), 'password': os.getenv("AUTH_PW")})
+            assert response.status_code == 200
 
-        # POST 2 queries using the db test, then GET and ensure response contains 2 timeline objs
-        test_db.TestTimelinePost.test_timeline_post(self)
-        response = self.client.get("/api/timeline_post")
-        assert response.status_code == 200
-        assert response.is_json
-        json = response.get_json()
-        assert "timeline_posts" in json
-        assert len(json["timeline_posts"]) == 2
+            response = self.client.post("api/signin", data={'name': os.getenv("AUTH_USERNAME"), 'password': os.getenv("AUTH_PW")})
+            assert response.status_code == 200
 
-    # send bad requests and test responses
-    def test_malformed_timeline_post(self):
+            # GET posts, should return empty list of timeline objs
+            response = self.client.get("/api/timeline_post")
+            print(response.status_code)
+            assert response.status_code == 200
+            assert response.is_json
+            json = response.get_json()
+            assert "timeline_posts" in json
+            assert len(json["timeline_posts"]) == 0
 
-        # POST request with empty content
-        response = self.client.post(
-            "/api/timeline_post",
-            data={"email": "john@example.com", "content": ""},
-        )
+            # POST 2 queries using the db test, then GET and ensure response contains 2 timeline objs
+            test_db.TestTimelinePost.test_timeline_post(self)
+            response = self.client.get("/api/timeline_post")
+            assert response.status_code == 200
+            assert response.is_json
+            json = response.get_json()
+            assert "timeline_posts" in json
+            assert len(json["timeline_posts"]) == 2
 
-        json = response.get_json()
-        assert json["status"] == 400
-        assert "Empty content" in json["body"]
+            ### test malformed requests to the timeline table ###
+            # POST request with empty content
+            response = self.client.post(
+                "/api/timeline_post",
+                data={"email": "john@example.com", "content": ""},
+            )
 
-        # POST request with missing content
-        response = self.client.post(
-            "/api/timeline_post",
-            data={"email": "john@example.com"},
-        )
-        json = response.get_json()
-        assert json["status"] == 400
-        assert "Empty content" in json["body"]
+            json = response.get_json()
+            assert json["status"] == 400
+            assert "Empty content" in json["body"]
+            
+            # POST request with missing content
+            response = self.client.post(
+                "/api/timeline_post",
+                data={"email": "john@example.com"},
+            )
+            json = response.get_json()
+            assert json["status"] == 400
+            assert "Empty content" in json["body"]
 
-        # POST request with malformed email
-        response = self.client.post(
-            "/api/timeline_post",
-            data={
-                "name": "John Doe",
-                "email": "not-an email",
-                "content": "Hello World, I am John",
-            },
-        )
+            # POST request with malformed email
+            response = self.client.post(
+                "/api/timeline_post",
+                data={
+                    "name": "John Doe",
+                    "email": "not-an email",
+                    "content": "Hello World, I am John",
+                },
+            )
 
-        json = response.get_json()
-        assert json["status"] == 400
-        assert "Invalid email" in json["body"]
+            json = response.get_json()
+            assert json["status"] == 400
+            assert "Invalid email" in json["body"]
 
-        # POST request with missing email
-        response = self.client.post(
-            "/api/timeline_post",
-            data={
-                "name": "John Doe",
-                "content": "Hello World, I am John",
-            },
-        )
+            # POST request with missing email
+            response = self.client.post(
+                "/api/timeline_post",
+                data={
+                    "name": "John Doe",
+                    "content": "Hello World, I am John",
+                },
+            )
 
-        json = response.get_json()
-        assert json["status"] == 400
-        assert "Invalid email" in json["body"]
+            json = response.get_json()
+            assert json["status"] == 400
+            assert "Invalid email" in json["body"]
 
-        # POST request with empty email
-        response = self.client.post(
-            "/api/timeline_post",
-            data={
-                "name": "John Doe",
-                "email": "",
-                "content": "Hello World, I am John",
-            },
-        )
+            # POST request with empty email
+            response = self.client.post(
+                "/api/timeline_post",
+                data={
+                    "name": "John Doe",
+                    "email": "",
+                    "content": "Hello World, I am John",
+                },
+            )
 
-        json = response.get_json()
-        assert json["status"] == 400
-        assert "Invalid email" in json["body"]
+            json = response.get_json()
+            assert json["status"] == 400
+            assert "Invalid email" in json["body"]

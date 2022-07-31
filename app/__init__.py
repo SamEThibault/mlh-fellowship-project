@@ -7,8 +7,7 @@ from flask_login import (
     LoginManager,
     login_required,
     current_user,
-    logout_user,
-    login_user,
+    logout_user
 )
 
 from app.timeline import timeline_api
@@ -35,13 +34,6 @@ dataPath = os.path.join(portfolio_dir, "static/data.json")
 
 data = open(dataPath)
 data = json.load(data)
-
-### this does not follow flask context rules and must be revised, in the meantime, timeline endpoints are not secured by user auth ###
-# # if we're testing:
-# if os.getenv("TESTING") == "true":
-#     # since db queries require a logged in user, login using .env username
-#     user = User.create(name=os.getenv("AUTH_USERNAME"), password=os.getenv("AUTH_PW"))
-#     login_user(user)
 
 # get user based on id
 @login_manager.user_loader
@@ -110,5 +102,9 @@ def signout():
     logout_user()
     return redirect("/")
 
-
+@app.route("/resume", methods=["GET"])
+def resume():
+    return render_template(
+        "resume.html", title="Sam Thibault - Resume", url=os.getenv("URL")
+    )
 ##### END OF FRONTEND ROUTES #####

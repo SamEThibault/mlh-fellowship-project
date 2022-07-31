@@ -1,9 +1,10 @@
 body {
-    background-color: white;
+    background-color: #282c44;
     background-size: cover;
     width: auto;
     overflow-x: hidden;
     margin: 0px;
+
 }
 
 .intro,

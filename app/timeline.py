@@ -12,7 +12,7 @@ import libgravatar
 timeline_api = Blueprint('timeline_api', __name__)
 
 @timeline_api.route("/api/timeline_post", methods=["POST"])
-# @login_required
+@login_required
 def post_time_line_post():
 
     # start by checking if the http request structure is correct
@@ -24,13 +24,9 @@ def post_time_line_post():
         return {"body" : "Empty content, please try again", "status" : 400}
 
     # if it is, we can assign some variables
-    # if we're currently testing, user won't be authenticated to set name to default value
-    if os.getenv("TESTING") == "true":
-        name = "default"
-    else: 
-        name = current_user.name
+    name = current_user.name
 
-    print(name)
+    # print(name)
     email = req.form["email"]
     print(email)
     content = req.form["content"]
@@ -55,7 +51,7 @@ def post_time_line_post():
 
 # get all documents
 @timeline_api.route("/api/timeline_post", methods=["GET"])
-# @login_required
+@login_required
 def get_time_line_post():
     return {
         "timeline_posts": [
@@ -67,7 +63,7 @@ def get_time_line_post():
 
 # delete a document by id
 @timeline_api.route("/api/timeline_post", methods=["DELETE"])
-# @login_required
+@login_required
 def delete_time_line_post():
 
     # get the author name associated with the post id
