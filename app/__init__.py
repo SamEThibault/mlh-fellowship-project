@@ -7,8 +7,7 @@ from flask_login import (
     LoginManager,
     login_required,
     current_user,
-    logout_user,
-    login_user,
+    logout_user
 )
 
 from app.timeline import timeline_api
