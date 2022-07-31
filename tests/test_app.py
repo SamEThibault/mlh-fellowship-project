@@ -30,10 +30,10 @@ class AppTestCase(unittest.TestCase):
 
          with self.client:
             # test login functionality: ensure to add both valid name and pw variables in .env file, sign up, then login
-            response = self.client.post("/api/signup", data={'name': os.getenv("AUTH_USERNAME"), 'password': os.getenv("AUTH_PW")})
+            response = self.client.post("/api/signup", data={'name': 'test', 'password': 'test'})
             assert response.status_code == 200
 
-            response = self.client.post("api/signin", data={'name': os.getenv("AUTH_USERNAME"), 'password': os.getenv("AUTH_PW")})
+            response = self.client.post("api/signin", data={'name': 'test', 'password': 'test'})
             assert response.status_code == 200
 
             # GET posts, should return empty list of timeline objs
