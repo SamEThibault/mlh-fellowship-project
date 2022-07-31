@@ -102,5 +102,9 @@ def signout():
     logout_user()
     return redirect("/")
 
-
+@app.route("/resume", methods=["GET"])
+def resume():
+    return render_template(
+        "resume.html", title="Sam Thibault - Resume", url=os.getenv("URL")
+    )
 ##### END OF FRONTEND ROUTES #####

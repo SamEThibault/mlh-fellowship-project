@@ -1,16 +1,25 @@
 {% extends "base.html" %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
-<script src="{{ url_for('static', filename='scripts/index.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/resume.css') }}">
 {% endblock %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
 
+<div class="main">
+    <embed class="pdf" src="../static/img/sam/Samuel_EmardThibault_Resume.pdf"/>
+
+    <div class="mobile">
+        <h1>
+            The embedded PDF might look a little small on your device... Click below to download it instead!
+        </h1>
+        <a href="../static/img/sam/Samuel_EmardThibault_Resume.pdf" class="btn btn-lg btn-dark btn-outline-light" download>
+            Download Resume PDF </a>
+    </div>
+</div>
+
 
 
 {% endblock %}
-
-{% block footer %}{% endblock %}
