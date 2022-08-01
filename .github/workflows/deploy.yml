@@ -47,11 +47,13 @@ jobs:
             User $SSH_USER
             IdentityFile /home/runner/.ssh/deploy-key.pem
             StrictHostKeyChecking no
+            port $SSH_PORT
           END
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
 
       - name: Deploy site
         run: ssh my-vps 
