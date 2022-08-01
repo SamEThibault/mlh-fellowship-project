@@ -1,0 +1,25 @@
+# use -f docker-compose.prod.yml to specify the use of this file
+version: "3"
+services:
+  myportfolio:
+    container_name: myportfolio
+    build: .
+    restart: always
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql
+    image: mariadb
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - mydatabase:/var/lib/mysql
+
+volumes:
+  mydatabase:
