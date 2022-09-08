@@ -10,23 +10,23 @@ from flask_login import (
     logout_user
 )
 
-from app.timeline import timeline_api
-from app.auth import authentication_api
-from app.db import User
+# from app.timeline import timeline_api
+# from app.auth import authentication_api
+# from app.db import User
 
 # load env variables, set app variable, and register blueprints to access all api routes
 load_dotenv()
 app = Flask(__name__)
-app.register_blueprint(timeline_api)
-app.register_blueprint(authentication_api)
+# app.register_blueprint(timeline_api)
+# app.register_blueprint(authentication_api)
 
 # flask-login initialization
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = "signin"
+#login_manager = LoginManager()
+#login_manager.init_app(app)
+#login_manager.login_view = "signin"
 
 # generate secret key
-app.secret_key = secrets.token_urlsafe(16)
+#app.secret_key = secrets.token_urlsafe(16)
 
 # store portfolio directory, then get json data path
 portfolio_dir = os.path.dirname(os.path.realpath(__file__))
@@ -36,12 +36,12 @@ data = open(dataPath)
 data = json.load(data)
 
 # get user based on id
-@login_manager.user_loader
-def load_user(user_id):
-    try:
-        return User.get(int(user_id))
-    except:
-        return None
+#@login_manager.user_loader
+#def load_user(user_id):
+#    try:
+#        return User.get(int(user_id))
+#    except:
+#        return None
 
 
 ##### FRONTEND ROUTES #####
@@ -96,11 +96,11 @@ def get_signup():
 
 
 # signout method which clears session cookies and returns to the home page
-@app.route("/signout")
-@login_required
-def signout():
-    logout_user()
-    return redirect("/")
+#@app.route("/signout")
+#@login_required
+#def signout():
+#    logout_user()
+#    return redirect("/")
 
 @app.route("/resume", methods=["GET"])
 def resume():

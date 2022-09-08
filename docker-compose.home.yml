@@ -9,17 +9,3 @@ services:
       - "5000:5000"
     env_file:
       - .env
-    depends_on:
-      - mysql
-
-  mysql:
-    container_name: mysql
-    image: mariadb
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      - mydatabase:/var/lib/mysql
-
-volumes:
-  mydatabase:
