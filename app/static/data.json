@@ -16,6 +16,21 @@
                     },
                     {
                         "val": "Develop Bash scripts and commands to streamline deployment processes and manipulate data"
+                    },
+                    {
+                        "val": "Write Python unit and integration tests and automate them for deployment."
+                    },
+                    {
+                        "val": "Containerize applications using Docker and orchestrate the deployment of multiple containers using Docker Compose."
+                    },
+                    {
+                        "val": "Implement reverse proxy to limit HTTP request rates to important API endpoints."
+                    },
+                    {
+                        "val": "Automate tests and deployment by building a CI/CD pipeline using GitHub Actions."
+                    },
+                    {
+                        "val": "Monitor and visualize system metrics by integrating Prometheus and Grafana."
                     }
                 ]
             },
@@ -62,16 +77,16 @@
         ],
         "current": [
             {
-                "val": "I'm part of the Summer 2022 MLH Fellowship and have joined the Production Engineering track."
+                "val": "I've recently completed the Production Engineering MLH Fellowship."
             },
             {
-                "val": "I'm working on automating deployment processes using Bash/Python scripting and Linux fundamentals. "
+                "val": "I'm working on my Linux skills by building a CentOS server to serve a few web apps."
             },
             {
-                "val": "I'm currently working on my Flask, Spring, SQL and NoSQL skills with MySQL, Firestore, and MongoDB!"
+                "val": "I'm currently working on my Python, Spring, and NoSQL skills with Firestore and MongoDB!"
             },
             {
-                "val": "I'm learning Object Oriented Java to work on Spring web apps and command line tools."
+                "val": "I'm learning about CI/CD to automate testing and deployment processes using Docker, GH Actions, and some Bash scripts."
             }
         ],
         "projects": [

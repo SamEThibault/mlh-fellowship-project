@@ -3,12 +3,12 @@ import secrets
 from flask import Flask, render_template, redirect
 from dotenv import load_dotenv
 import json
-from flask_login import (
-    LoginManager,
-    login_required,
-    current_user,
-    logout_user
-)
+# from flask_login import (
+#     LoginManager,
+#     login_required,
+#     current_user,
+#     logout_user
+# )
 
 # from app.timeline import timeline_api
 # from app.auth import authentication_api
@@ -70,29 +70,29 @@ def experience():
     )
 
 
-@app.route("/timeline")
-@login_required
-def timeline():
-    return render_template(
-        "timeline.html",
-        title="Sam Thibault - Timeline",
-        url=os.getenv("URL"),
-        name=current_user.name,
-    )
+# @app.route("/timeline")
+# @login_required
+# def timeline():
+#     return render_template(
+#         "timeline.html",
+#         title="Sam Thibault - Timeline",
+#         url=os.getenv("URL"),
+#         name=current_user.name,
+#     )
 
 
-@app.route("/signin", methods=["GET"])
-def signin():
-    return render_template(
-        "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
-    )
+# @app.route("/signin", methods=["GET"])
+# def signin():
+#     return render_template(
+#         "signin.html", title="Sam Thibault - Sign in", url=os.getenv("URL")
+#     )
 
 
-@app.route("/signup", methods=["GET"])
-def get_signup():
-    return render_template(
-        "signup.html", title="Sam Thibault - Sign up", url=os.getenv("URL")
-    )
+# @app.route("/signup", methods=["GET"])
+# def get_signup():
+#     return render_template(
+#         "signup.html", title="Sam Thibault - Sign up", url=os.getenv("URL")
+#     )
 
 
 # signout method which clears session cookies and returns to the home page
