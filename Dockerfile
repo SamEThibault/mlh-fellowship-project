@@ -2,7 +2,7 @@ FROM python:3.9-slim-buster
 
 WORKDIR /mlh-fellowship-project
 
-COPY requirements.txt .
+COPY requirements_home.txt .
 
 RUN pip3 install -r requirements_home.txt
 
