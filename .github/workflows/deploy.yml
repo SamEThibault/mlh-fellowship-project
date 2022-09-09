@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - deployment
   workflow_dispatch:
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
         run: python -m venv python3-virtualenv
 
       - name: Install Dependencies
-        run: python3-virtualenv/bin/pip install -r requirements.txt
+        run: python3-virtualenv/bin/pip install -r requirements_home.txt
 
       - name: Run Tests
         run: chmod +x shell_scripts/run_test.sh && ./shell_scripts/run_test.sh

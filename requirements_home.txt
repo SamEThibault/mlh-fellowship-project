@@ -1,0 +1,17 @@
+branca
+certifi
+charset-normalizer
+click
+colorama
+Flask
+idna
+importlib-metadata
+itsdangerous
+Jinja2
+MarkupSafe
+numpy
+python-dotenv
+requests
+urllib3
+Werkzeug
+zipp
