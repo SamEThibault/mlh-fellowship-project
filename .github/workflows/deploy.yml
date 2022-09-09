@@ -59,8 +59,7 @@ jobs:
         run: ssh my-vps 
           'chmod +x ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh &&
           ${{ secrets.PROJECT_ROOT }}/shell_scripts/redeploy-site.sh &&
-          cd ${{ secrets.PROJECT_ROOT }} &&
-          docker compose ps'
+          cd ${{ secrets.PROJECT_ROOT }}'
 
   notify:
     needs: deploy
