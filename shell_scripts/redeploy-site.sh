@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "fetching most recent repository changes..."
-cd /root/github/mlh-fellowship-project
+cd /home/opc/mlh-fellowship-project
 git checkout deployment && git pull
 
 echo "Spinning down existing containers to conserve memory..."
