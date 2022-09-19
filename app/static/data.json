@@ -91,24 +91,29 @@
         ],
         "projects": [
             {
-                "name": "Hackville 2022 - TimeSavior",
-                "link": "https://github.com/SamEThibault/time-savior",
-                "desc": "Spring Boot web application that suggests days to complete weekly tasks based on a user's schedule."
-            },
-            {
                 "name": "QHACKS Hackathon, 1st place HOTG Category - CookHack",
                 "link": "https://github.com/SamEThibault/cook-hack",
-                "desc": "React.Js web application that suggests recipes to cook based on a user's available ingredients."
+                "desc": "CookHack, a React.Js web application which recommends recipes based on ingredients you have available, won 1st place for the Hammer of the Gods category by implementing their image recognition API to suggest ingredient names to users through their Webcam. I set up a Flask backend to handle MongoDB requests from the frontend before migrating to Firebase."
             },
             {
                 "name": "Personal Project - MongoWheels",
                 "link": "https://github.com/SamEThibault/mongo-wheels",
-                "desc": "Spring Boot web application with a MongoDB database which allows users to access automobile data."
+                "desc": "Spring Boot web application with a MongoDB database which allows users to access automobile data. I have been working on the database to efficiently store a large amount of data in a way that can easily be modeled by Java objects. This allows the team to implement the MVC design effectively where information is put into view using Thymeleaf."
             },
             {
                 "name": "NewHacks 2021, 3rd place overall - NoteHack",
                 "link": "https://github.com/SamEThibault/note-hack",
-                "desc": "Note-sharing application that allows students to share their electronic notes."
+                "desc": "Note sharing application (NoteHack) developed in 24 hours with a team of 4 members earned 3rd place overall for the NewHacks 2021 hackathon. I contributed to the project using React.Js fundamentals."
+            },
+            {
+                "name": "#HackTo 2022, 1st place overall - Minute Tutor",
+                "link":"https://github.com/SamEThibault/minute-tutor",
+                "desc": "Tutor matching web application Minute Tutor earned 1st place overall at the #HackTo hackathon hosted by Amazon. This React.js application resolves the issue of finding help for specific academic problems by finding available tutors to answer a student's question instantly over video chat. I worked on the Flask backend which interacted with a MySQL database to store student and tutor information. I also learned about Redux and utilized the fetch API to populate global React states."
+            },
+            {
+                "name": "S:\\HA<KS 2022, 3rd place overall - MoneyHack",
+                "link": "https://github.com/SamEThibault/shacks-2022",
+                "desc": "Budgeting / Financial advice application (MoneyHack) developed in 24 hours with a team of 4 members earned 3rd place overall during the S:\\HA<KS 2022 hackathon. This React.js application parses through monthly account statements to provide personalized data and tips to help users improve their financial literacy. I worked on a Flask backend to handle the logic of the application, as well as a database to store and update user information."
             }
         ]
     }

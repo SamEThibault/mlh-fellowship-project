@@ -64,7 +64,7 @@
                 <div id="projects" style="margin-top:30px;margin-bottom:30px;">
 
                     <!-- Bootstrap carousel displaying projects with Jinja-templated details -->
-                    <div id="carousel" class="carousel carousel-fade carousel-dark" data-bs-ride="carousel"
+                    <div id="carousel" class="carousel carousel-fade carousel-dark " data-bs-ride="carousel"
                         data-bs-interval="10000">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"
@@ -75,43 +75,16 @@
                                 aria-label="Slide 3"></button>
                             <button type="button" data-bs-target="#carousel" data-bs-slide-to="3"
                                 aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carousel" data-bs-slide-to="4"
+                                aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
+
                             <div class="carousel-item active">
                                 <div class="card text-dark">
                                     <img class="card-img-top" style="height: 15rem; object-fit: contain;"
-                                        src="../static/img/sam/CookHack.png" alt="cookhack img">
+                                        src="../static/img/sam/hackto.webp" alt="hackto img">
 
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ data.sam.projects[1].name }}</h5>
-                                        <p class="card-text">{{ data.sam.projects[1].desc }}</p>
-
-                                        <div>
-                                            <img class="icons"
-                                                src="https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript"
-                                                height="25"></img>
-                                            <img class="icons"
-                                                src="https://img.shields.io/badge/-Bootstrap-black?style=flat-square&logo=bootstrap"
-                                                height=25"></img>
-                                            <img class="icons"
-                                                src="https://img.shields.io/badge/-React-black?style=flat-square&logo=react"
-                                                height="25"></img>
-                                            <img class="icons"
-                                                src="https://img.shields.io/badge/-Firebase-black?style=flat-square&logo=firebase"
-                                                height="25"></img>
-                                        </div>
-                                        <br />
-                                        <a href={{ data.sam.projects[1].link }} class="btn btn-dark">Check it out!</a>
-                                        <br />
-                                        <br />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="carousel-item">
-                                <div class="card text-dark">
-                                    <img class="card-img-top" style="height: 15rem; object-fit: contain;"
-                                        src="../static/img/sam/notehack.PNG" alt="notehack img">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ data.sam.projects[3].name }}</h5>
                                         <p class="card-text">{{ data.sam.projects[3].desc }}</p>
@@ -121,6 +94,68 @@
                                                 src="https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript"
                                                 height="25"></img>
                                             <img class="icons"
+                                                src="https://img.shields.io/badge/-Flask-black?style=flat-square&logo=flask"
+                                                height=25"></img>
+                                            <img class="icons"
+                                                src="https://img.shields.io/badge/-React-black?style=flat-square&logo=react"
+                                                height="25"></img>
+                                            <img class="icons"
+                                                src="https://img.shields.io/badge/-MySQL-black?style=flat-square&logo=mysql"
+                                                height="25"></img>
+                                        </div>
+                                        <br />
+                                        <a href={{ data.sam.projects[3].link }} class="btn btn-dark">Check it out!</a>
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="card text-dark">
+                                    <img class="card-img-top" style="height: 15rem; object-fit: contain;"
+                                        src="../static/img/sam/shacks.jpg" alt="shacks img">
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ data.sam.projects[4].name }}</h5>
+                                        <p class="card-text">{{ data.sam.projects[4].desc }}</p>
+
+                                        <div>
+                                            <img class="icons"
+                                                src="https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript"
+                                                height="25"></img>
+                                            <img class="icons"
+                                                src="https://img.shields.io/badge/-Flask-black?style=flat-square&logo=flask"
+                                                height=25"></img>
+                                            <img class="icons"
+                                                src="https://img.shields.io/badge/-React-black?style=flat-square&logo=react"
+                                                height="25"></img>
+                                            <img class="icons"
+                                                src="https://img.shields.io/badge/-MySQL-black?style=flat-square&logo=mysql"
+                                                height="25"></img>
+                                        </div>
+                                        <br />
+                                        <a href={{ data.sam.projects[4].link }} class="btn btn-dark">Check it out!</a>
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="card text-dark">
+                                    <img class="card-img-top" style="height: 15rem; object-fit: contain;"
+                                        src="../static/img/sam/CookHack.png" alt="cookhack img">
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ data.sam.projects[0].name }}</h5>
+                                        <p class="card-text">{{ data.sam.projects[0].desc }}</p>
+
+                                        <div>
+                                            <img class="icons"
+                                                src="https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript"
+                                                height="25"></img>
+                                            <img class="icons"
                                                 src="https://img.shields.io/badge/-Bootstrap-black?style=flat-square&logo=bootstrap"
                                                 height=25"></img>
                                             <img class="icons"
@@ -129,36 +164,8 @@
                                             <img class="icons"
                                                 src="https://img.shields.io/badge/-Firebase-black?style=flat-square&logo=firebase"
                                                 height="25"></img>
-                                        </div>
-                                        <br />
-                                        <a href={{ data.sam.projects[3].link }} class="btn btn-dark">Check it out!</a>
-                                        <br />
-                                        <br />
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="carousel-item">
-                                <div class="card text-dark">
-                                    <img class="card-img-top" style="height: 15rem; object-fit: contain;"
-                                        src="../static/img/sam/TimeSavior.png" alt="timesavior img">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ data.sam.projects[0].name }}</h5>
-                                        <p class="card-text">{{ data.sam.projects[0].desc }}</p>
-
-                                        <div>
                                             <img class="icons"
-                                                src="https://img.shields.io/badge/-Java-black?style=flat-square&logo=java"
-                                                height="25"></img>
-                                            <img class="icons"
-                                                src="https://img.shields.io/badge/-SpringBoot-black?style=flat-square&logo=springboot"
-                                                height=25"></img>
-                                            <img class="icons"
-                                                src="https://img.shields.io/badge/-HTML5-black?style=flat-square&logo=html5&logoColor=white"
-                                                height="25"></img>
-                                            <img class="icons"
-                                                src="https://img.shields.io/badge/-CSS3-black?style=flat-square&logo=css3"
+                                                src="https://img.shields.io/badge/-MongoDB-black?style=flat-square&logo=mongodb"
                                                 height="25"></img>
                                         </div>
                                         <br />
@@ -174,22 +181,53 @@
                                     <img class="card-img-top" style="height: 15rem; object-fit: contain;"
                                         src="../static/img/sam/mongowheels.png" alt="mongowheels img">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ data.sam.projects[2].name }}</h5>
-                                        <p class="card-text">{{ data.sam.projects[2].desc }}</p>
+                                        <h5 class="card-title">{{ data.sam.projects[1].name }}</h5>
+                                        <p class="card-text">{{ data.sam.projects[1].desc }}</p>
 
                                         <div>
                                             <img class="icons"
-                                                src="https://img.shields.io/badge/-Java-black?style=flat-square&logo=java"
-                                                height="25"></img>
+                                                src="https://img.shields.io/badge/-Bootstrap-black?style=flat-square&logo=bootstrap"
+                                                height=25"></img>
                                             <img class="icons"
                                                 src="https://img.shields.io/badge/-SpringBoot-black?style=flat-square&logo=springboot"
-                                                height=25"></img>
+                                                height="25"></img>
                                             <img class="icons"
                                                 src="https://img.shields.io/badge/-MongoDB-black?style=flat-square&logo=mongodb"
                                                 height="25"></img>
                                             <img class="icons"
                                                 src="https://img.shields.io/badge/-Thymeleaf-black?style=flat-square&logo=thymeleaf"
                                                 height="25"></img>
+                                        </div>
+                                        <br />
+                                        <a href={{ data.sam.projects[1].link }} class="btn btn-dark">Check it out!</a>
+                                        <br />
+                                        <br />
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="card text-dark">
+                                    <img class="card-img-top" style="height: 15rem; object-fit: contain;"
+                                        src="../static/img/sam/notehack.PNG" alt="notehack img">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ data.sam.projects[2].name }}</h5>
+                                        <p class="card-text">{{ data.sam.projects[2].desc }}</p>
+
+                                        <div>
+                                            <img class="icons"
+                                            src="https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript"
+                                            height="25"></img>
+                                            <img class="icons"
+                                            src="https://img.shields.io/badge/-Bootstrap-black?style=flat-square&logo=bootstrap"
+                                            height=25"></img>
+                                            <img class="icons"
+                                            src="https://img.shields.io/badge/-React-black?style=flat-square&logo=react"
+                                            height="25"></img>
+                                            <img class="icons"
+                                            src="https://img.shields.io/badge/-Firebase-black?style=flat-square&logo=firebase"
+                                            height="25"></img>
                                         </div>
                                         <br />
                                         <a href={{ data.sam.projects[2].link }} class="btn btn-dark">Check it out!</a>
