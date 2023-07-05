@@ -1,9 +1,9 @@
 {
     "sam": {
         "name": "Samuel Emard-Thibault",
-        "about": "Hi, my name is Sam, I'm from Ottawa, and am completing my studies in Kingston, ON. I enjoy creating, optimizing, and maintaining web applications!",
-        "about_short": "Hi, my name is Sam, I'm from Ottawa, and am completing my studies in Kingston, ON.",
-        "education": "Rising junior studying Computer Engineering at Queen's University in ON, Canada.",
+        "about": "Hi, my name is Sam, I'm from Ottawa and I'm completing my studies in Kingston, ON. I enjoy creating, optimizing, and maintaining web applications!",
+        "about_short": "Hi, my name is Sam, I'm from Ottawa and I'm completing my studies in Kingston, ON.",
+        "education": "Currently studying Computer Engineering at Queen's University in ON, Canada.",
         "work_experience": [
             {
                 "name": "MLH Production Engineering Fellow",
@@ -58,9 +58,20 @@
                         "val": "Analyse MatLab SimuLink models and repository documentation to develop torque vectoring tools"
                     }
                 ]
+            },
+            {
+                "name": "Software Developer Intern, CAC",
+                "tasks": [
+                    {
+                        "val": "Currently working as part of a team of developers for the Queen's Centre for Advanced Computing to develop and deploy web/mobile applications for external clients"
+                    },
+                    {
+                        "val": "Current stack includes Nextjs, React, Flutter, Django, Nodejs, and AWS."
+                    }
+                ]
             }
         ],
-        "hobbies": "working on cars, buildings computers, and playing video games.",
+        "hobbies": "hobby auto racing, buildings computers, and cooking.",
         "social": [
             {
                 "name": "LinkedIn",
@@ -77,13 +88,13 @@
         ],
         "current": [
             {
-                "val": "I've recently completed the Production Engineering MLH Fellowship."
+                "val": "I'm currently a Software Developer Intern at the Queen's Centre for Advanced Computing."
             },
             {
                 "val": "I'm working on my Linux skills by building a CentOS server to serve a few web apps."
             },
             {
-                "val": "I'm currently working on my Python, Spring, and NoSQL skills with Firestore and MongoDB!"
+                "val": "I'm currently working on my Django, Nextjs and deployment skills throughout my professional endeavours!"
             },
             {
                 "val": "I'm learning about CI/CD to automate testing and deployment processes using Docker, GH Actions, and some Bash scripts."
