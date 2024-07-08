@@ -63,10 +63,16 @@
                 "name": "Software Developer Intern, CAC",
                 "tasks": [
                     {
-                        "val": "Currently working as part of a team of developers for the Queen's Centre for Advanced Computing to develop and deploy web/mobile applications for external clients"
+                        "val": "Developed and deployed internal tools and applications for external clients including full-stack web applications, android applications, and external APIs"
                     },
                     {
-                        "val": "Current stack includes Nextjs, React, Flutter, Django, Nodejs, and AWS."
+                        "val": "Refactored deployment processes for legacy applications to implement CI/CD using GitHub Actions and AWS Elastic Beanstalk"
+                    },
+                    {
+                        "val": "Worked with multiple clients to understand and communicate development expectations as a team"
+                    },
+                    {
+                        "val": "On-boarded and trained a team of new hires to take over the development and maintenance of multiple web applications"
                     }
                 ]
             }
@@ -88,7 +94,7 @@
         ],
         "current": [
             {
-                "val": "I'm currently a Software Developer Intern at the Queen's Centre for Advanced Computing."
+                "val": "I've recently wrapped my internship as a Software Developer at the Queen's Centre for Advanced Computing."
             },
             {
                 "val": "I'm working on my Linux skills by building a CentOS server to serve a few web apps."
