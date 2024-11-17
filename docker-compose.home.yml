@@ -10,4 +10,4 @@ services:
     env_file:
       - .env
     volumes:
-      - ./app/static/fund.json:/app/static/fund.json
+      - ./app/static/fund.json:/mlh-fellowship-project/app/static/fund.json
