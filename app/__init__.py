@@ -145,6 +145,7 @@ def update_fund():
     except Exception as e:
         return jsonify({"status": 400, "message": str(e)})
 
+@app.route("/weekly_update", methods=["POST"])
 def weekly_update():
     try:
         fund_data = read_fund()
