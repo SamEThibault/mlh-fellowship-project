@@ -1,6 +1,7 @@
 __pycache__
 python3-virtualenv
 flask.sqlite
+app/static/fund.json
 
 .DS_Store
 .env
