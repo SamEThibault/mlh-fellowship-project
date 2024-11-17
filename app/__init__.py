@@ -144,5 +144,14 @@ def update_fund():
         return jsonify({"status": "success", "new_total": fund_data["fund"]["total"]})
     except Exception as e:
         return jsonify({"status": 400, "message": str(e)})
-    
+
+def weekly_update():
+    try:
+        fund_data = read_fund()
+        fund_data["fund"]["total"] += 28
+
+        write_fund(fund_data)
+        return jsonify({"status": 200, "new_total": fund_data["fund"]["total"]})
+    except Exception as e:
+        return jsonify({"status": 400, "message": str(e)})
 ##### END OF FRONTEND ROUTES #####
