@@ -1,6 +1,6 @@
 import os
 import secrets
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, jsonify
 from dotenv import load_dotenv
 import json
 # from flask_login import (
@@ -34,6 +34,8 @@ dataPath = os.path.join(portfolio_dir, "static/data.json")
 
 data = open(dataPath)
 data = json.load(data)
+
+dataPath = os.path.join(portfolio_dir, "static/fund.json")
 
 # get user based on id
 #@login_manager.user_loader
@@ -107,4 +109,40 @@ def resume():
     return render_template(
         "resume.html", title="Sam Thibault - Resume", url=os.getenv("URL")
     )
+
+
+# FUND RELATED
+def read_fund():
+    with open(dataPath, "r") as f:
+        return json.load(f)
+
+def write_fund(data):
+    with open(dataPath, "w") as f:
+        json.dump(data, f, indent=4)
+
+@app.route("/fund", methods=["GET"])
+def fund():
+    fund_data = read_fund()
+    return render_template(
+        "fund.html", title="Fund", url=os.getenv("URL"), data=fund_data,
+    )
+
+@app.route("/update_fund", methods=["POST"])
+def update_fund():
+    try:
+        amount = int(request.json.get("amount"))
+        action = request.json.get("action")
+
+        fund_data = read_fund()
+
+        if action == "add":
+            fund_data["fund"]["total"] += amount
+        elif action == "subtract":
+            fund_data["fund"]["total"] -= amount
+        
+        write_fund(fund_data)
+        return jsonify({"status": "success", "new_total": fund_data["fund"]["total"]})
+    except Exception as e:
+        return jsonify({"status": 400, "message": str(e)})
+    
 ##### END OF FRONTEND ROUTES #####

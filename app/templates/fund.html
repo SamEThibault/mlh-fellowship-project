@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/fund.css') }}">
+{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="background">
+    <div class="mask">
+        <div class="home-container">
+            <!-- Display the fund total -->
+            <h1 id="fund-total">{{ data.fund.total }}</h1>
+
+            <!-- Input and buttons for adding/subtracting amounts -->
+            <div class="input-container">
+                <input type="number" id="amount" placeholder="Enter amount" />
+                <button onclick="updateTotal('add')">Add</button>
+                <button onclick="updateTotal('subtract')">Subtract</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+<script>
+    // JavaScript function to update the fund total
+    async function updateTotal(action) {
+        const amountInput = document.getElementById("amount");
+        const fundTotalElement = document.getElementById("fund-total");
+        const amount = parseInt(amountInput.value, 10);
+    
+        // Validate input
+        if (isNaN(amount) || amount <= 0) {
+            alert("Please enter a valid amount greater than 0");
+            return;
+        }
+    
+        try {
+            // Send a POST request to update the fund total on the server
+            const response = await fetch("/update_fund", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ amount, action })
+            });
+    
+            const result = await response.json();
+    
+            if (result.status === "success") {
+                // Update the displayed total with the new total from the server
+                fundTotalElement.textContent = result.new_total;
+            } else {
+                alert("Error: " + result.message);
+            }
+        } catch (error) {
+            console.error("Failed to update total:", error);
+            alert("Failed to update total");
+        }
+    
+        // Clear the input field
+        amountInput.value = '';
+    }
+    </script>
+{% endblock %}
